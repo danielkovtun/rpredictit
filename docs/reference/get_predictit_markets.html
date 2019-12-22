@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -123,25 +123,25 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>markets</span> <span class='kw'>&lt;-</span> <span class='fu'>get_predictit_markets</span>()
-<span class='no'>markets</span></div><div class='output co'>#&gt; # A tibble: 1,096 x 20
+<span class='no'>markets</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1,096 x 20</span><span>
 #&gt;       id name  shortName image url   timeStamp status contract_id dateEnd
-#&gt;    &lt;int&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;  
-#&gt;  1  2721 Whic… Which pa… http… http… 2019-12-… Open          4390 N/A    
-#&gt;  2  2721 Whic… Which pa… http… http… 2019-12-… Open          4389 N/A    
-#&gt;  3  2721 Whic… Which pa… http… http… 2019-12-… Open          4388 N/A    
-#&gt;  4  2721 Whic… Which pa… http… http… 2019-12-… Open          4391 N/A    
-#&gt;  5  2747 Will… Will Cub… http… http… 2019-12-… Open          4495 2020-1…
-#&gt;  6  2875 Will… Will Cuo… http… http… 2019-12-… Open          5121 2020-1…
-#&gt;  7  2901 Will… Woman pr… http… http… 2019-12-… Open          5215 N/A    
-#&gt;  8  2902 Will… Will the… http… http… 2019-12-… Open          5216 N/A    
-#&gt;  9  2903 Will… Will the… http… http… 2019-12-… Open          5217 N/A    
-#&gt; 10  2992 Will… Will Zuc… http… http… 2019-12-… Open          5534 2020-1…
-#&gt; # … with 1,086 more rows, and 11 more variables: contract_image &lt;chr&gt;,
-#&gt; #   contract_name &lt;chr&gt;, contract_shortName &lt;chr&gt;, contract_status &lt;chr&gt;,
-#&gt; #   lastTradePrice &lt;dbl&gt;, bestBuyYesCost &lt;dbl&gt;, bestBuyNoCost &lt;dbl&gt;,
-#&gt; #   bestSellYesCost &lt;dbl&gt;, bestSellNoCost &lt;dbl&gt;, lastClosePrice &lt;dbl&gt;,
-#&gt; #   displayOrder &lt;int&gt;</div><div class='input'>
-</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'> 1</span><span>  </span><span style='text-decoration: underline;'>2</span><span>721 Whic… Which pa… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>4</span><span>390 N/A    
+#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>2</span><span>721 Whic… Which pa… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>4</span><span>389 N/A    
+#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>2</span><span>721 Whic… Which pa… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>4</span><span>388 N/A    
+#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>2</span><span>721 Whic… Which pa… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>4</span><span>391 N/A    
+#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>747 Will… Will Cub… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>4</span><span>495 2020-1…
+#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>875 Will… Will Cuo… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>5</span><span>121 2020-1…
+#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>901 Will… Woman pr… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>5</span><span>215 N/A    
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>902 Will… Will the… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>5</span><span>216 N/A    
+#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>903 Will… Will the… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>5</span><span>217 N/A    
+#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>992 Will… Will Zuc… http… http… 2019-12-… Open          </span><span style='text-decoration: underline;'>5</span><span>534 2020-1…
+#&gt; </span><span style='color: #555555;'># … with 1,086 more rows, and 11 more variables: contract_image </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   contract_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, contract_shortName </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, contract_status </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   lastTradePrice </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bestBuyYesCost </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bestBuyNoCost </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   bestSellYesCost </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, bestSellNoCost </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, lastClosePrice </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   displayOrder </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
