@@ -2,7 +2,7 @@
 % Please edit documentation in R/market_data.R
 \name{get_predictit_markets_table}
 \alias{get_predictit_markets_table}
-\title{Get jQuery datatable containing bids and asks for all Predictit markets}
+\title{Get JavaScript datatable containing bids and asks for all Predictit markets}
 \usage{
 get_predictit_markets_table()
 }

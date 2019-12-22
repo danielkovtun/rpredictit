@@ -133,7 +133,7 @@ format_market_data <- function(data){
 }
 
 
-#' @title Get jQuery datatable containing bids and asks for all Predictit markets
+#' @title Get JavaScript datatable containing bids and asks for all Predictit markets
 #' @description Wrapper function to return a DT::datatable containing Predictit market data. Can be displayed in a shiny app, RMarkdown document, or exported via htmltools::saveWidget.
 #'
 #' @examples
