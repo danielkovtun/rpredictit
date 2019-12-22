@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+rsconnect/
+.*.Rnb.cached
+revdep/
+.DS_Store
+download/
