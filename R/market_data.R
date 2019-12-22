@@ -104,7 +104,6 @@ create_hyperlinked_df <- function(links, titles) {
 #' format_market_data(data)
 #'
 #' @importFrom magrittr "%>%"
-#' @importFrom htmltools "HTML"
 #' @export
 format_market_data <- function(data){
 
@@ -141,7 +140,6 @@ format_market_data <- function(data){
 #' get_predictit_markets_table()
 #'
 #' @importFrom magrittr "%>%"
-#' @importFrom htmltools "HTML"
 #' @export
 get_predictit_markets_table <- function(){
   data <- format_market_data(get_predictit_markets())
