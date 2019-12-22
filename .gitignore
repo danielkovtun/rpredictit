@@ -7,3 +7,4 @@ revdep/
 .DS_Store
 download/
 predictit_*.pdf
+_pkgdown.yml
