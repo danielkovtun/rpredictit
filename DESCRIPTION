@@ -1,4 +1,4 @@
-Package: pRedictit
+Package: predictit
 Title: R Interface to the Predictit API
 Version: 0.0.0.9000
 Authors@R: person('Daniel', 'Kovtun', email = 'quantumfusetrader@gmail.com', role = c('cre', 'aut'))
