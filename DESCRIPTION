@@ -1,0 +1,25 @@
+Package: pRedictit
+Title: R Interface to the Predictit API
+Version: 0.0.0.9000
+Authors@R: person('Daniel', 'Kovtun', email = 'quantumfusetrader@gmail.com', role = c('cre', 'aut'))
+Description: An R interface for the Predictit public API (<https://www.predictit.org/api/>).
+    License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data.
+    In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    httr,
+    jsonlite,
+    dplyr,
+    DT,
+    htmltools,
+    magrittr
+RoxygenNote: 6.1.1
+URL: https://github.com/danielkovtun/predictit
+BugReports: https://github.com/danielkovtun/predictit/issues
+Suggests: 
+    testthat (>= 2.1.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
