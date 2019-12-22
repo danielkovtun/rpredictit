@@ -37,14 +37,6 @@ get_predictit_markets()
 #   bestSellNoCost <dbl>, lastClosePrice <dbl>, displayOrder <int>
 ```
 
-Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data:
-
-```{r}
-library(predictit)
-get_predictit_markets_table()
-```
-![](README_files/figure-markdown_github/markets_table.png)
-
 To return data for a specific market, use predictit::get_predictit_market(id), where `id` refers to the numerical code pertaining to the market of interest. 
 You can find a market's numerical code by consulting its URL or by first calling the all markets API (`get_predictit_markets()`)
 ```{r}
@@ -62,3 +54,11 @@ get_predictit_market(id)
 4  2721 Whic… Which pa… http… http… 2019-12-… Open          4391 N/A     https://az620… Green         Green            Open                      0.02           0.03          0.98
 # … with 4 more variables: bestSellYesCost <dbl>, bestSellNoCost <dbl>, lastClosePrice <dbl>, displayOrder <int>
 ```
+
+Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data:
+
+```{r}
+library(predictit)
+get_predictit_markets_table()
+```
+![](README_files/figure-markdown_github/markets_table.png)
