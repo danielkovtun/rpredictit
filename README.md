@@ -62,3 +62,6 @@ library(predictit)
 get_predictit_markets_table()
 ```
 ![](README_files/figure-markdown_github/markets_table.png)
+
+
+See the full documentation at https://danielkovtun.github.io/predictit. 
