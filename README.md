@@ -3,7 +3,7 @@ This package provides an interface to the Predictit public API (https://www.pred
 
 ## Installation
 
-You may install the stable version from CRAN, or the development version using *remotes*:
+You may install the stable version from CRAN, or the development version using *devtools*:
 ```{r}
 # install from CRAN
 install.packages('predictit')
@@ -45,4 +45,20 @@ get_predictit_markets_table()
 ```
 ![](README_files/figure-markdown_github/markets_table.png)
 
-To return data for a specific market, use predictit::get_predictit_market(id), where id corresponds to the numerical 
+To return data for a specific market, use predictit::get_predictit_market(id), where `id` refers to the numerical code pertaining to the market of interest. 
+You can find a market's numerical code by consulting its URL or by first calling the all markets API (`get_predictit_markets()`)
+```{r}
+library(predictit)
+markets <- get_predictit_markets()
+id <- markets$id[1]
+get_predictit_market(id)
+
+# A tibble: 4 x 20
+     id name  shortName image url   timeStamp status contract_id dateEnd contract_image contract_name contract_shortN… contract_status lastTradePrice bestBuyYesCost bestBuyNoCost
+  <int> <chr> <chr>     <chr> <chr> <chr>     <chr>        <int> <chr>   <chr>          <chr>         <chr>            <chr>                    <dbl>          <dbl>         <dbl>
+1  2721 Whic… Which pa… http… http… 2019-12-… Open          4390 N/A     https://az620… Democratic    Democratic       Open                      0.53           0.53          0.48
+2  2721 Whic… Which pa… http… http… 2019-12-… Open          4389 N/A     https://az620… Republican    Republican       Open                      0.49           0.49          0.52
+3  2721 Whic… Which pa… http… http… 2019-12-… Open          4388 N/A     https://az620… Libertarian   Libertarian      Open                      0.02           0.03          0.98
+4  2721 Whic… Which pa… http… http… 2019-12-… Open          4391 N/A     https://az620… Green         Green            Open                      0.02           0.03          0.98
+# … with 4 more variables: bestSellYesCost <dbl>, bestSellNoCost <dbl>, lastClosePrice <dbl>, displayOrder <int>
+```
