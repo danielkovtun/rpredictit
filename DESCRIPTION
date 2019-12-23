@@ -14,7 +14,8 @@ Imports:
     dplyr,
     DT,
     htmltools,
-    magrittr
+    magrittr,
+    stringr
 RoxygenNote: 6.1.1
 URL: https://github.com/danielkovtun/predictit
 BugReports: https://github.com/danielkovtun/predictit/issues
