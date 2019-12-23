@@ -4,3 +4,4 @@ docs/
 README_files/
 cran-comments.md
 predictit_.*\.pdf
+_pkgdown.yml
