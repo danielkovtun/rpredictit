@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R Interface to the Predictit API • predictit</title>
+<title>R Interface to the PredictIt API • predictit</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="R Interface to the Predictit API">
-<meta property="og:description" content="An R interface for the Predictit public API (&lt;https://www.predictit.org/api/&gt;).
+<script src="pkgdown.js"></script><meta property="og:title" content="R Interface to the PredictIt API">
+<meta property="og:description" content="An R interface for the PredictIt public API (&lt;https://www.predictit.org/api/&gt;).
     License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data.
     In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.">
 <meta name="twitter:card" content="summary">
@@ -73,8 +73,8 @@
   <div class="contents col-md-9">
 <div id="an-r-interface-to-the-predictit-api" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#an-r-interface-to-the-predictit-api" class="anchor"></a>An R interface to the Predictit API</h1></div>
-<p>This package provides an interface to the Predictit public API (<a href="https://www.predictit.org/api/" class="uri">https://www.predictit.org/api/</a>). License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data. In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.</p>
+<a href="#an-r-interface-to-the-predictit-api" class="anchor"></a>An R interface to the PredictIt API</h1></div>
+<p>This package provides an interface to the PredictIt public API (<a href="https://www.predictit.org/api/" class="uri">https://www.predictit.org/api/</a>). License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data. In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -88,9 +88,9 @@ devtools::install_github('danielkovtun/predictit')</code></pre>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>To start off, try predictit::get_predictit_market_data() to return a tibble containing bid and ask data for all Predictit markets:</p>
+<p>To start off, try predictit::all_markets() to return a tibble containing bid and ask data for all PredictIt markets:</p>
 <pre class="{r}"><code>library(predictit)
-get_predictit_markets()
+all_markets()
 
 # A tibble: 1,096 x 20
       id name  shortName image url   timeStamp status contract_id dateEnd contract_image contract_name contract_shortN… contract_status
@@ -107,11 +107,11 @@ get_predictit_markets()
 10  2992 Will… Will Zuc… http… http… 2019-12-… Open          5534 2020-1… https://az620… Will Faceboo… Will Zuckerberg… Open           
 # … with 1,086 more rows, and 7 more variables: lastTradePrice &lt;dbl&gt;, bestBuyYesCost &lt;dbl&gt;, bestBuyNoCost &lt;dbl&gt;, bestSellYesCost &lt;dbl&gt;,
 #   bestSellNoCost &lt;dbl&gt;, lastClosePrice &lt;dbl&gt;, displayOrder &lt;int&gt;</code></pre>
-<p>To return data for a specific market, use predictit::get_predictit_market(id), where <code>id</code> refers to the numerical code pertaining to the market of interest. You can find a market’s numerical code by consulting its URL or by first calling the all markets API (<code><a href="reference/get_predictit_markets.html">get_predictit_markets()</a></code>)</p>
+<p>To return data for a specific market, use <code><a href="reference/single_market.html">predictit::single_market(id)</a></code>, where <code>id</code> refers to the numerical code pertaining to the market of interest. You can find a market’s numerical code by consulting its URL or by first calling the all markets API (<code><a href="reference/all_markets.html">all_markets()</a></code>)</p>
 <pre class="{r}"><code>library(predictit)
-markets &lt;- get_predictit_markets()
+markets &lt;- all_markets()
 id &lt;- markets$id[1]
-get_predictit_market(id)
+single_market(id)
 
 # A tibble: 4 x 20
      id name  shortName image url   timeStamp status contract_id dateEnd contract_image contract_name contract_shortN… contract_status lastTradePrice bestBuyYesCost bestBuyNoCost
@@ -123,9 +123,8 @@ get_predictit_market(id)
 # … with 4 more variables: bestSellYesCost &lt;dbl&gt;, bestSellNoCost &lt;dbl&gt;, lastClosePrice &lt;dbl&gt;, displayOrder &lt;int&gt;</code></pre>
 <p>Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data:</p>
 <pre class="{r}"><code>library(predictit)
-get_predictit_markets_table()</code></pre>
+markets_table()</code></pre>
 <p><img src="markets_table.png"></p>
-<br>
 <p>See the full documentation at <a href="https://danielkovtun.github.io/predictit" class="uri">https://danielkovtun.github.io/predictit</a>.</p>
 </div>
 </div>
