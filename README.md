@@ -1,5 +1,5 @@
-# An R interface to the Predictit API
-This package provides an interface to the Predictit public API (https://www.predictit.org/api/). License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data. In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
+# An R interface to the PredictIt API
+This package provides an interface to the PredictIt public API (https://www.predictit.org/api/). License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data. In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
 
 ## Installation
 
@@ -14,11 +14,11 @@ devtools::install_github('danielkovtun/predictit')
 
 ## Usage
 
-To start off, try predictit::get_predictit_market_data() to return a tibble containing bid and ask data for all Predictit markets:
+To start off, try predictit::all_markets() to return a tibble containing bid and ask data for all PredictIt markets:
 
 ```{r}
 library(predictit)
-get_predictit_markets()
+all_markets()
 
 # A tibble: 1,096 x 20
       id name  shortName image url   timeStamp status contract_id dateEnd contract_image contract_name contract_shortN… contract_status
@@ -37,13 +37,13 @@ get_predictit_markets()
 #   bestSellNoCost <dbl>, lastClosePrice <dbl>, displayOrder <int>
 ```
 
-To return data for a specific market, use predictit::get_predictit_market(id), where `id` refers to the numerical code pertaining to the market of interest. 
-You can find a market's numerical code by consulting its URL or by first calling the all markets API (`get_predictit_markets()`)
+To return data for a specific market, use `predictit::single_market(id)`, where `id` refers to the numerical code pertaining to the market of interest. 
+You can find a market's numerical code by consulting its URL or by first calling the all markets API (`all_markets()`)
 ```{r}
 library(predictit)
-markets <- get_predictit_markets()
+markets <- all_markets()
 id <- markets$id[1]
-get_predictit_market(id)
+single_market(id)
 
 # A tibble: 4 x 20
      id name  shortName image url   timeStamp status contract_id dateEnd contract_image contract_name contract_shortN… contract_status lastTradePrice bestBuyYesCost bestBuyNoCost
@@ -59,9 +59,9 @@ Alternatively, to return an interactive htmlwidget (DT::datatable) table contain
 
 ```{r}
 library(predictit)
-get_predictit_markets_table()
+markets_table()
 ```
-![](README_files/figure-markdown_github/markets_table.png)
+![](docs/markets_table.png)
 
 
 See the full documentation at https://danielkovtun.github.io/predictit. 
