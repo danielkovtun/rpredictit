@@ -7,13 +7,13 @@
 format_market_data(data)
 }
 \arguments{
-\item{data}{Predictit market data, of class data.frame or tbl, as returned by pRedictit::get_predictit_market_data().}
+\item{data}{PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets().}
 }
 \description{
-Wrapper function to apply HTML formatting to Predictit market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).
+Wrapper function to apply HTML formatting to PredictIt market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).
 }
 \examples{
-data <- get_predictit_markets()
+data <- all_markets()
 format_market_data(data)
 
 }

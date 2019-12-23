@@ -1,13 +1,13 @@
-#' @title Get bids and asks for all Predictit markets
-#' @description Wrapper function to get all available Predictit markets and contract prices.
+#' @title Get bids and asks for all PredictIt markets
+#' @description Wrapper function to get all available PredictIt markets and contract prices.
 #'
 #' @examples
-#' markets <- get_predictit_markets()
+#' markets <- all_markets()
 #' markets
 #'
 #' @importFrom magrittr "%>%"
 #' @export
-get_predictit_markets <- function(){
+all_markets <- function(){
   url <- "https://www.predictit.org/api/marketdata/all/"
   response <- tryCatch({
     r <- httr::GET(url)
@@ -39,25 +39,25 @@ get_predictit_markets <- function(){
     return(market_contracts)
 
   } else{
-    cat("Error fetching Predictit market data \nCheck your internet connection and try again \n")
+    cat("Error fetching PredictIt market data \nCheck your internet connection and try again \n")
     cat("Note: do not abuse the API by requesting data more than once every 60 seconds\n")
     return(response)
   }
 }
 
 
-#' @title Get bids and asks for a specific Predictit market
+#' @title Get bids and asks for a specific PredictIt market
 #' @description Wrapper function to get data for a specific market.
 #'
 #' @param id Numerical code pertaining to the market. You can find a market's numerical code by consulting its URL or by first calling the all markets API.
 #' @examples
-#' markets <- get_predictit_markets()
+#' markets <- all_markets()
 #' id <- markets$id[1]
-#' get_predictit_market(id)
+#' single_market(id)
 #'
 #' @importFrom magrittr "%>%"
 #' @export
-get_predictit_market <- function(id){
+single_market <- function(id){
   base_url <- "https://www.predictit.org/api/marketdata/markets/"
   url <- paste0(base_url, id)
 
@@ -96,11 +96,11 @@ create_hyperlinked_df <- function(links, titles) {
 
 
 #' @title Format bid and ask market data with HTML
-#' @description Wrapper function to apply HTML formatting to Predictit market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).
+#' @description Wrapper function to apply HTML formatting to PredictIt market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).
 #'
-#' @param data Predictit market data, of class data.frame or tbl, as returned by pRedictit::get_predictit_market_data().
+#' @param data PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets().
 #' @examples
-#' data <- get_predictit_markets()
+#' data <- all_markets()
 #' format_market_data(data)
 #'
 #' @importFrom magrittr "%>%"
@@ -133,16 +133,16 @@ format_market_data <- function(data){
 }
 
 
-#' @title Get JavaScript datatable containing bids and asks for all Predictit markets
-#' @description Wrapper function to return a DT::datatable containing Predictit market data. Can be displayed in a shiny app, RMarkdown document, or exported via htmltools::saveWidget.
+#' @title Get JavaScript datatable containing bids and asks for all PredictIt markets
+#' @description Wrapper function to return a DT::datatable containing PredictIt market data. Can be displayed in a shiny app, RMarkdown document, or exported via htmlwidgets::saveWidget.
 #'
 #' @examples
-#' get_predictit_markets_table()
+#' markets_table()
 #'
 #' @importFrom magrittr "%>%"
 #' @export
-get_predictit_markets_table <- function(){
-  data <- format_market_data(get_predictit_markets())
+markets_table <- function(){
+  data <- format_market_data(all_markets())
   data <- data %>%
     dplyr::mutate(Yes = paste0(data$bestBuyYesCost, " / ",  data$bestSellYesCost)) %>%
     dplyr::mutate(No = paste0(data$bestBuyNoCost, " / ",  data$bestSellNoCost)) %>%
