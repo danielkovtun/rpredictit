@@ -14,7 +14,7 @@ devtools::install_github('danielkovtun/predictit')
 
 ## Usage
 #### All Markets
-To start off, try predictit::all_markets() to return a tibble containing bid and ask data for all PredictIt markets:
+To start off, try `predictit::all_markets()` to return a tibble containing bid and ask data for all PredictIt markets:
 
 ```{r}
 library(predictit)
@@ -37,7 +37,7 @@ all_markets()
 ```
 
 #### Interactive Table
-Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to `predictit::markets_table`:
+Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to `predictit::markets_table()`:
 
 ```{r}
 data <- predictit::all_markets()
