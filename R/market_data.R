@@ -19,6 +19,11 @@ all_markets <- function(){
   )
   if(class(response) == "list"){
     markets <- r$markets %>% dplyr::as.tbl()
+    markets <- markets %>%
+      dplyr::mutate_if(is.character, trimws) %>%
+      dplyr::mutate_at(dplyr::vars("timeStamp"), ~gsub("T", " ", .)) %>%
+      dplyr::mutate_at(dplyr::vars("timeStamp"), ~as.POSIXct(strptime(., format = "%Y-%m-%d %H:%M:%OS", tz = "EST")))
+
 
     market_contracts <- lapply(1:nrow(markets), function(x){
       market <- markets[x,] %>% dplyr::select(-contracts)
@@ -84,7 +89,11 @@ single_market <- function(id){
   contracts <- r$contracts
 
   r <- r[-which(names(r) == "contracts")]
-  market <- dplyr::bind_rows(r)
+  market <- dplyr::bind_rows(r) %>%
+    dplyr::mutate_if(is.character, trimws) %>%
+    dplyr::mutate_at(dplyr::vars("timeStamp"), ~gsub("T", " ", .)) %>%
+    dplyr::mutate_at(dplyr::vars("timeStamp"), ~as.POSIXct(strptime(., format = "%Y-%m-%d %H:%M:%OS", tz = "EST")))
+
 
   contracts <- contracts %>%
     dplyr::rename(contract_id = "id") %>%
@@ -140,10 +149,6 @@ format_market_data <- function(data){
     dplyr::select(-c("name", "shortName", "image", "url", "contract_image", "contract_name", "contract_shortName", "contract_status", "displayOrder"))
   data <- dplyr::bind_cols('contract' = contract_html, data)
   data <- dplyr::bind_cols('market' = market_html, data)
-  data <- data %>%
-    dplyr::mutate_if(is.character, trimws) %>%
-    dplyr::mutate_at(dplyr::vars("timeStamp"), ~gsub("T", " ", .)) %>%
-    dplyr::mutate_at(dplyr::vars("timeStamp"), ~as.POSIXct(strptime(., format = "%Y-%m-%d %H:%M:%OS", tz = "EST")))
 
 
   return(data)
