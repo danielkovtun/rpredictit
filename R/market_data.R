@@ -46,6 +46,23 @@ all_markets <- function(){
 }
 
 
+#' @title Get bids and asks for all PredictIt "Tweet" markets
+#' @description Wrapper function to get all available PredictIt "Tweet count" markets and contract prices.
+#'
+#' @examples
+#' tweet_markets()
+#'
+#' @importFrom magrittr "%>%"
+#' @export
+tweet_markets <- function(){
+  markets <- all_markets()
+  tweet <- markets %>%
+    dplyr::filter_at(dplyr::vars("name"), ~stringr::str_detect(., 'tweet'))
+
+  return(tweet)
+}
+
+
 #' @title Get bids and asks for a specific PredictIt market
 #' @description Wrapper function to get data for a specific market.
 #'
@@ -98,7 +115,7 @@ create_hyperlinked_df <- function(links, titles) {
 #' @title Format bid and ask market data with HTML
 #' @description Wrapper function to apply HTML formatting to PredictIt market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).
 #'
-#' @param data PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets().
+#' @param data PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets() or predictit::tweet_markets()
 #' @examples
 #' data <- all_markets()
 #' format_market_data(data)
@@ -136,13 +153,16 @@ format_market_data <- function(data){
 #' @title Get JavaScript datatable containing bids and asks for all PredictIt markets
 #' @description Wrapper function to return a DT::datatable containing PredictIt market data. Can be displayed in a shiny app, RMarkdown document, or exported via htmlwidgets::saveWidget.
 #'
+#' @param data PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets() or predictit::tweet_markets()
+#'
 #' @examples
-#' markets_table()
+#' data <- all_markets()
+#' markets_table(data)
 #'
 #' @importFrom magrittr "%>%"
 #' @export
-markets_table <- function(){
-  data <- format_market_data(all_markets())
+markets_table <- function(data){
+  data <- format_market_data(data)
   data <- data %>%
     dplyr::mutate(Yes = paste0(data$bestBuyYesCost, " / ",  data$bestSellYesCost)) %>%
     dplyr::mutate(No = paste0(data$bestBuyNoCost, " / ",  data$bestSellNoCost)) %>%

@@ -4,12 +4,16 @@
 \alias{markets_table}
 \title{Get JavaScript datatable containing bids and asks for all PredictIt markets}
 \usage{
-markets_table()
+markets_table(data)
+}
+\arguments{
+\item{data}{PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets() or predictit::tweet_markets()}
 }
 \description{
 Wrapper function to return a DT::datatable containing PredictIt market data. Can be displayed in a shiny app, RMarkdown document, or exported via htmlwidgets::saveWidget.
 }
 \examples{
-markets_table()
+data <- all_markets()
+markets_table(data)
 
 }
