@@ -91,7 +91,7 @@ devtools::install_github('danielkovtun/predictit')</code></pre>
 <div id="all-markets" class="section level4">
 <h4 class="hasAnchor">
 <a href="#all-markets" class="anchor"></a>All Markets</h4>
-<p>To start off, try predictit::all_markets() to return a tibble containing bid and ask data for all PredictIt markets:</p>
+<p>To start off, try <code><a href="reference/all_markets.html">predictit::all_markets()</a></code> to return a tibble containing bid and ask data for all PredictIt markets:</p>
 <pre class="{r}"><code>library(predictit)
 all_markets()
 
@@ -113,7 +113,7 @@ all_markets()
 <div id="interactive-table" class="section level4">
 <h4 class="hasAnchor">
 <a href="#interactive-table" class="anchor"></a>Interactive Table</h4>
-<p>Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to <code><a href="reference/markets_table.html">predictit::markets_table</a></code>:</p>
+<p>Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to <code><a href="reference/markets_table.html">predictit::markets_table()</a></code>:</p>
 <pre class="{r}"><code>data &lt;- predictit::all_markets()
 predictit::markets_table(data)</code></pre>
 <p><img src="markets_table.png"></p>
