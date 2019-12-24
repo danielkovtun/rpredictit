@@ -1,5 +1,5 @@
 library(shiny)
-library(predictit)
+library(rpredictit)
 library(DT)
 library(dygraphs)
 
@@ -45,14 +45,14 @@ shinyApp(
     rv <- reactiveValues(contract_data = NULL, table_data = NULL, watchlist = NULL)
 
     markets <- reactive({
-      predictit::all_markets()
+      rpredictit::all_markets()
     })
 
     output$contract_DT <- renderDT({
       req(markets())
 
       contract_data <- markets()
-      table_data <- predictit::format_market_data(contract_data)
+      table_data <- rpredictit::format_market_data(contract_data)
 
       rv$contract_data <- contract_data
       rv$table_data <- table_data
@@ -120,7 +120,7 @@ shinyApp(
         options_list$scroller <- TRUE
       }
 
-      watchlist_data <- predictit::format_market_data(watchlist_data)
+      watchlist_data <- rpredictit::format_market_data(watchlist_data)
       updated_at <- unique(watchlist_data$Timestamp)
 
       watchlist_data <- watchlist_data %>% dplyr::select(-c("Timestamp", "Market id", "Contract id"))
@@ -146,7 +146,7 @@ shinyApp(
       req(rv$watchlist)
       ids <- unique(rv$watchlist$id)
 
-      data <- lapply(1:length(ids), function(x) predictit::single_market(ids[x]))
+      data <- lapply(1:length(ids), function(x) rpredictit::single_market(ids[x]))
       data <- dplyr::bind_rows(data)
 
       rv$watchlist <- data
@@ -156,8 +156,8 @@ shinyApp(
     output$historical_plot <- renderDygraph({
       req(input$historical_csv)
       inFile = input$historical_csv
-      contract_data <- predictit::parse_historical_csv(inFile$datapath, filename = inFile$name)
-      predictit::historical_plot(contract_data)
+      contract_data <- rpredictit::parse_historical_csv(inFile$datapath, filename = inFile$name)
+      rpredictit::historical_plot(contract_data)
     })
   }
 )

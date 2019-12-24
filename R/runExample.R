@@ -1,12 +1,12 @@
 # common way to print error messages
 errMsg <- function(x) {
-  stop(sprintf("predictit: %s", x), call. = FALSE)
+  stop(sprintf("rpredictit: %s", x), call. = FALSE)
 }
 
-#' Run predictit examples
+#' Run rpredictit examples
 #'
-#' Launch a \code{predictit} example Shiny app that shows how to
-#' easily use \code{predictit} in an app.\cr\cr
+#' Launch a \code{rpredictit} example Shiny app that shows how to
+#' easily use \code{rpredictit} in an app.\cr\cr
 #' Run without any arguments to see a list of available example apps.
 #'
 #' @param example The app to launch
@@ -24,7 +24,7 @@ runExample <- function(example) {
   validExamples <-
     paste0(
       'Valid examples are: "',
-      paste(list.files(system.file("examples", package = "predictit")),
+      paste(list.files(system.file("examples", package = "rpredictit")),
             collapse = '", "'),
       '"')
 
@@ -36,7 +36,7 @@ runExample <- function(example) {
   }
 
   appDir <- system.file("examples", example,
-                        package = "predictit")
+                        package = "rpredictit")
   if (appDir == "") {
     errMsg(sprintf("could not find example app `%s`\n%s",
                    example, validExamples))

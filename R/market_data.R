@@ -124,7 +124,7 @@ create_hyperlinked_df <- function(links, titles) {
 #' @title Format bid and ask market data with HTML
 #' @description Wrapper function to apply HTML formatting to PredictIt market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).
 #'
-#' @param data PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets() or predictit::tweet_markets()
+#' @param data PredictIt market data, of class data.frame or tibble, as returned by rpredictit::all_markets() or rpredictit::tweet_markets()
 #' @examples
 #' data <- all_markets()
 #' format_market_data(data)
@@ -188,7 +188,7 @@ format_market_data <- function(data){
 #' @title Get JavaScript datatable containing bids and asks for all PredictIt markets
 #' @description Wrapper function to return a DT::datatable containing PredictIt market data. Can be displayed in a shiny app, RMarkdown document, or exported via htmlwidgets::saveWidget.
 #'
-#' @param data PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets() or predictit::tweet_markets()
+#' @param data PredictIt market data, of class data.frame or tibble, as returned by rpredictit::all_markets() or rpredictit::tweet_markets()
 #'
 #' @examples
 #' data <- all_markets()
@@ -223,7 +223,7 @@ markets_table <- function(data){
 #'
 #' @examples
 #' filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
-#' csv_path <- system.file("extdata", filename, package = "predictit")
+#' csv_path <- system.file("extdata", filename, package = "rpredictit")
 #' parse_historical_csv(csv_path)
 #'
 #' @importFrom magrittr "%>%"
@@ -290,11 +290,11 @@ parse_historical_csv <- function(csv_path, filename = NA){
 #' @title Plot historical contract data obtained from the PredictIt website
 #' @description FUnction to make an interactive dygraph plot of historical contract data.
 #'
-#' @param contract_data Named list containing contract name and data of class xts, as returned by predictit::parse_historical_csv()
+#' @param contract_data Named list containing contract name and data of class xts, as returned by rpredictit::parse_historical_csv()
 #'
 #' @examples
 #' filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
-#' csv_path <- system.file("extdata", filename, package = "predictit")
+#' csv_path <- system.file("extdata", filename, package = "rpredictit")
 #' contract_data <- parse_historical_csv(csv_path)
 #' historical_plot(contract_data)
 #'
