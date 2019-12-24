@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Format bid and ask market data with HTML — format_market_data • predictit</title>
+<title>Plot historical contract data obtained from the PredictIt website — historical_plot • predictit</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Format bid and ask market data with HTML — format_market_data" />
-<meta property="og:description" content="Wrapper function to apply HTML formatting to PredictIt market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable)." />
+<meta property="og:title" content="Plot historical contract data obtained from the PredictIt website — historical_plot" />
+<meta property="og:description" content="FUnction to make an interactive dygraph plot of historical contract data." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,46 +108,32 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Format bid and ask market data with HTML</h1>
+    <h1>Plot historical contract data obtained from the PredictIt website</h1>
     <small class="dont-index">Source: <a href='https://github.com/danielkovtun/predictit/blob/master/R/market_data.R'><code>R/market_data.R</code></a></small>
-    <div class="hidden name"><code>format_market_data.Rd</code></div>
+    <div class="hidden name"><code>historical_plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper function to apply HTML formatting to PredictIt market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).</p>
+    <p>FUnction to make an interactive dygraph plot of historical contract data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>format_market_data</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>historical_plot</span>(<span class='no'>contract_data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>PredictIt market data, of class data.frame or tibble, as returned by predictit::all_markets() or predictit::tweet_markets()</p></td>
+      <th>contract_data</th>
+      <td><p>Named list containing contract name and data of class xts, as returned by predictit::parse_historical_csv()</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='all_markets.html'>all_markets</a></span>()
-<span class='fu'>format_market_data</span>(<span class='no'>data</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1,096 x 11</span><span>
-#&gt;    Market Contract `Yes (Bid/Ask)` `No (Bid/Ask)` `Last Trade Pri…
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.52 / 0.51     0.49 / 0.48                0.52
-#&gt; </span><span style='color: #555555;'> 2</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.5 / 0.48      0.52 / 0.5                 0.5 
-#&gt; </span><span style='color: #555555;'> 3</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.03 / 0.02     0.98 / 0.97                0.02
-#&gt; </span><span style='color: #555555;'> 4</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.03 / 0.02     0.98 / 0.97                0.02
-#&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.07 / 0.05     0.95 / 0.93                0.05
-#&gt; </span><span style='color: #555555;'> 6</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.08 / 0.06     0.94 / 0.92                0.07
-#&gt; </span><span style='color: #555555;'> 7</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.1 / 0.09      0.91 / 0.9                 0.1 
-#&gt; </span><span style='color: #555555;'> 8</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.23 / 0.2      0.8 / 0.77                 0.2 
-#&gt; </span><span style='color: #555555;'> 9</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.05 / 0.04     0.96 / 0.95                0.04
-#&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #555555;'>"</span><span>&lt;img… &lt;img sr… 0.04 / 0.02     0.98 / 0.96                0.02
-#&gt; </span><span style='color: #555555;'># … with 1,086 more rows, and 6 more variables: `Last Close Price` </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
-#&gt; #   Expiry </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Timestamp </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, `Market id` </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, `Contract id` </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
-#&gt; #   Status </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='no'>filename</span> <span class='kw'>&lt;-</span> <span class='st'>"What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"</span>
+<span class='no'>csv_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='no'>filename</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"predictit"</span>)
+<span class='no'>contract_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='parse_historical_csv.html'>parse_historical_csv</a></span>(<span class='no'>csv_path</span>)
+<span class='fu'>historical_plot</span>(<span class='no'>contract_data</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -88,10 +88,17 @@ devtools::install_github('danielkovtun/predictit')</code></pre>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
+<div id="demo-shiny-application" class="section level4">
+<h4 class="hasAnchor">
+<a href="#demo-shiny-application" class="anchor"></a>Demo Shiny Application</h4>
+<p>To start off, try running a demo Shiny application included with the package by running:</p>
+<pre class="{r}"><code>library(predictit)
+runExample('demo')</code></pre>
+</div>
 <div id="all-markets" class="section level4">
 <h4 class="hasAnchor">
 <a href="#all-markets" class="anchor"></a>All Markets</h4>
-<p>To start off, try <code><a href="reference/all_markets.html">predictit::all_markets()</a></code> to return a tibble containing bid and ask data for all PredictIt markets:</p>
+<p>Try <code><a href="reference/all_markets.html">predictit::all_markets()</a></code> to return a tibble containing bid and ask data for all PredictIt markets:</p>
 <pre class="{r}"><code>library(predictit)
 all_markets()
 
@@ -117,6 +124,16 @@ all_markets()
 <pre class="{r}"><code>data &lt;- predictit::all_markets()
 predictit::markets_table(data)</code></pre>
 <p><img src="markets_table.png"></p>
+</div>
+<div id="interactive-plot" class="section level4">
+<h4 class="hasAnchor">
+<a href="#interactive-plot" class="anchor"></a>Interactive Plot</h4>
+<p>To plot historical prices, download a csv file for a specific contract from PredictIt’s website and pass the file path to <code>predictit::parse_historical_ohlcv()</code>. Then, pass in the returned contract data object to <code><a href="reference/historical_plot.html">predictit::historical_plot()</a></code>:</p>
+<pre class="{r}"><code>filename &lt;- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
+csv_path &lt;- system.file("extdata", filename, package = "predictit")
+contract_data &lt;- predictit::parse_historical_ohlcv(csv_path)
+predictit::historical_plot(contract_data)</code></pre>
+<p><iframe src="plot.html" width="100%" height="900"></iframe></p>
 </div>
 <div id="twitter-markets" class="section level4">
 <h4 class="hasAnchor">
