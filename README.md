@@ -1,15 +1,18 @@
 # An R interface to the PredictIt API
-This package provides an interface to the PredictIt public API (https://www.predictit.org/api/). License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data. In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
+The `rpredictit` package provides an interface to the PredictIt public API (https://www.predictit.org/api/). In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
+
+`rpredictit` is not affiliated with any predictive markets and is presented for informational purposes only. Always confirm with your own research before making an investment. 
+**License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data.**
 
 ## Installation
 
 You may install the stable version from CRAN, or the development version using *devtools*:
 ```{r}
 # install from CRAN
-install.packages('predictit')
+install.packages('rpredictit')
 
 # or the development version, via devtools
-devtools::install_github('danielkovtun/predictit')
+devtools::install_github('danielkovtun/rpredictit')
 ```
 
 ## Usage
@@ -17,16 +20,16 @@ devtools::install_github('danielkovtun/predictit')
 #### Demo Shiny Application
 To start off, try running a demo Shiny application included with the package by running:
 ```{r}
-library(predictit)
+library(rpredictit)
 runExample('demo')
 ```
 ![](docs/demo.gif)
 
 #### All Markets
-Try `predictit::all_markets()` to return a tibble containing bid and ask data for all PredictIt markets:
+Try `rpredictit::all_markets()` to return a tibble containing bid and ask data for all PredictIt markets:
 
 ```{r}
-library(predictit)
+library(rpredictit)
 all_markets()
 
 # A tibble: 1,096 x 20
@@ -46,40 +49,40 @@ all_markets()
 ```
 
 #### Interactive Table
-Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to `predictit::markets_table()`:
+Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to `rpredictit::markets_table()`:
 
 ```{r}
-data <- predictit::all_markets()
-predictit::markets_table(data)
+data <- rpredictit::all_markets()
+rpredictit::markets_table(data)
 ```
 ![](docs/markets_table.png)
 
 #### Interactive Plot
-To plot historical prices, download a csv file for a specific contract from PredictIt's website and pass the file path to `predictit::parse_historical_ohlcv()`.
-Then, pass in the returned contract data object to `predictit::historical_plot()`:
+To plot historical prices, download a csv file for a specific contract from PredictIt's website and pass the file path to `rpredictit::parse_historical_ohlcv()`.
+Then, pass in the returned contract data object to `rpredictit::historical_plot()`:
 ```{r}
 filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
-csv_path <- system.file("extdata", filename, package = "predictit")
-contract_data <- predictit::parse_historical_ohlcv(csv_path)
-predictit::historical_plot(contract_data)
+csv_path <- system.file("extdata", filename, package = "rpredictit")
+contract_data <- rpredictit::parse_historical_ohlcv(csv_path)
+rpredictit::historical_plot(contract_data)
 ```
 ![](docs/interactive_plot.png)
 
 #### Twitter Markets
-If you are only interested in "Tweet count" markets, use `predictit::tweet_markets()` to return all available "Tweet" markets:
+If you are only interested in "Tweet count" markets, use `rpredictit::tweet_markets()` to return all available "Tweet" markets:
 ```{r}
-data <- predictit::tweet_markets()
-predictit::markets_table(data)
+data <- rpredictit::tweet_markets()
+rpredictit::markets_table(data)
 ```
 ![](docs/tweet_table.png)
 
 #### Individual Market
-To return data for a specific market, use `predictit::single_market(id)`, where `id` refers to the numerical code pertaining to the market of interest. 
+To return data for a specific market, use `rpredictit::single_market(id)`, where `id` refers to the numerical code pertaining to the market of interest. 
 You can find a market's numerical code by consulting its URL or by first calling the all markets API (`all_markets()`)
 ```{r}
-markets <- predictit::all_markets()
+markets <- rpredictit::all_markets()
 id <- markets$id[1]
-predictit::single_market(id)
+rpredictit::single_market(id)
 
 # A tibble: 4 x 20
      id name  shortName image url   timeStamp           status contract_id dateEnd contract_image contract_name contract_shortN… contract_status lastTradePrice bestBuyYesCost
@@ -91,4 +94,4 @@ predictit::single_market(id)
 # … with 5 more variables: bestBuyNoCost <dbl>, bestSellYesCost <dbl>, bestSellNoCost <dbl>, lastClosePrice <dbl>, displayOrder <int>
 ```
 
-See the full documentation at https://danielkovtun.github.io/predictit. 
+See the full documentation at https://danielkovtun.github.io/rpredictit. 
