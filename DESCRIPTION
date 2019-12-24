@@ -13,9 +13,13 @@ Imports:
     jsonlite,
     dplyr,
     DT,
+    dygraphs,
     htmltools,
     magrittr,
-    stringr
+    stringr,
+    quantmod,
+    xts,
+    shiny
 RoxygenNote: 6.1.1
 URL: https://github.com/danielkovtun/predictit
 BugReports: https://github.com/danielkovtun/predictit/issues
