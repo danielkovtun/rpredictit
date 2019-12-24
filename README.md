@@ -13,8 +13,16 @@ devtools::install_github('danielkovtun/predictit')
 ```
 
 ## Usage
+
+#### Demo Shiny Application
+To start off, try running a demo Shiny application included with the package by running:
+```{r}
+library(predictit)
+runExample('demo')
+```
+
 #### All Markets
-To start off, try `predictit::all_markets()` to return a tibble containing bid and ask data for all PredictIt markets:
+Try `predictit::all_markets()` to return a tibble containing bid and ask data for all PredictIt markets:
 
 ```{r}
 library(predictit)
@@ -45,6 +53,16 @@ predictit::markets_table(data)
 ```
 ![](docs/markets_table.png)
 
+#### Interactive Plot
+To plot historical prices, download a csv file for a specific contract from PredictIt's website and pass the file path to `predictit::parse_historical_ohlcv()`.
+Then, pass in the returned contract data object to `predictit::historical_plot()`:
+```{r}
+filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
+csv_path <- system.file("extdata", filename, package = "predictit")
+contract_data <- predictit::parse_historical_ohlcv(csv_path)
+predictit::historical_plot(contract_data)
+```
+![](docs/interactive_plot.png)
 
 #### Twitter Markets
 If you are only interested in "Tweet count" markets, use `predictit::tweet_markets()` to return all available "Tweet" markets:
