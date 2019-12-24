@@ -147,9 +147,39 @@ format_market_data <- function(data){
 
   data <- data %>%
     dplyr::select(-c("name", "shortName", "image", "url", "contract_image", "contract_name", "contract_shortName", "contract_status", "displayOrder"))
+
   data <- dplyr::bind_cols('contract' = contract_html, data)
   data <- dplyr::bind_cols('market' = market_html, data)
 
+  data <- data %>%
+    dplyr::mutate(Yes = paste0(data$bestBuyYesCost, " / ",  data$bestSellYesCost)) %>%
+    dplyr::mutate(No = paste0(data$bestBuyNoCost, " / ",  data$bestSellNoCost)) %>%
+    dplyr::select(
+      c("market",
+        "contract",
+        "Yes",
+        "No",
+        "lastTradePrice",
+        "lastClosePrice",
+        "dateEnd",
+        "timeStamp",
+        "id",
+        "contract_id",
+        "status"
+      )
+    )
+
+  colnames(data) <- c(
+    'Market', 'Contract',
+    'Yes (Bid/Ask)',
+    'No (Bid/Ask)',
+    'Last Trade Price',
+    'Last Close Price',
+    'Expiry',
+    'Timestamp',
+    'Market id', 'Contract id',
+    'Status'
+  )
 
   return(data)
 }
@@ -168,35 +198,6 @@ format_market_data <- function(data){
 #' @export
 markets_table <- function(data){
   data <- format_market_data(data)
-  data <- data %>%
-    dplyr::mutate(Yes = paste0(data$bestBuyYesCost, " / ",  data$bestSellYesCost)) %>%
-    dplyr::mutate(No = paste0(data$bestBuyNoCost, " / ",  data$bestSellNoCost)) %>%
-    dplyr::select(
-      c("market",
-        "contract",
-        "Yes",
-        "No",
-        "lastTradePrice",
-        "lastClosePrice",
-        "dateEnd",
-        "timeStamp",
-        "id",
-        "contract_id",
-        "status"
-        )
-      )
-
-  colnames(data) <- c(
-    'Market', 'Contract',
-    'Yes (Bid/Ask)',
-    'No (Bid/Ask)',
-    'Last Trade Price',
-    'Last Close Price',
-    'Expiry',
-    'Timestamp',
-    'Market id', 'Contract id',
-    'Status'
-    )
   DT::datatable(data,
                 class ='cell-border stripe',
                 escape = F,
@@ -212,4 +213,103 @@ markets_table <- function(data){
                     list(width = '10%', targets = list(2, 3, 4, 5))
                   )
                 ))
+}
+
+#' @title Parse csv file containing historical OHLCV data
+#' @description Helper function to parse a csv file obtained from the PredictIt website, containing historical OHLCV data, into an object of class xts.
+#'
+#' @param csv_path Path to a csv file containing historical OHLCV data for a specific contract (Open, High, Low, Close, Volume)
+#' @param filename Optional name to give the csv file when the filepath is derived from a temporary directory
+#'
+#' @examples
+#' filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
+#' csv_path <- system.file("extdata", filename, package = "predictit")
+#' parse_historical_csv(csv_path)
+#'
+#' @importFrom magrittr "%>%"
+#' @importFrom xts "as.xts"
+#' @importFrom quantmod "Cl"
+#' @importFrom utils "read.csv"
+#' @export
+parse_historical_csv <- function(csv_path, filename = NA){
+  ohlcv <- tryCatch({
+    read.csv(csv_path, stringsAsFactors = F)
+  },
+    error = function(error_message) {
+      return(NA)
+    }
+  )
+
+  if(is.na(filename)){
+    filename <- csv_path
+  }
+
+  filename <- gsub("\\.csv", "", basename(filename))
+  filename <- gsub("_", " ", filename)
+
+  if(class(ohlcv) == "data.frame"){
+    colnames(ohlcv) <- c("contract", "date", "open", "high", "low", "close", "volume")
+
+    ohlcv <- ohlcv %>%
+      dplyr::as.tbl() %>%
+      dplyr::mutate_if(is.character, trimws) %>%
+      dplyr::mutate_at(dplyr::vars("open", "high", "low", "close"), ~as.numeric(gsub("\\$", "", .))) %>%
+      dplyr::mutate_at(dplyr::vars("date"), ~as.POSIXct(strptime(., tz = "EST", format = "%m/%d/%Y %H:%M"))) %>%
+      as.data.frame() %>%
+      dplyr::group_by(ohlcv$contract)
+
+    contracts <- unique(as.character(ohlcv$contract))
+
+    ohlcv <- dplyr::group_split(ohlcv)
+
+
+    xts_list <- lapply(1:length(ohlcv), function(x){
+      dat <- ohlcv[[x]] %>% as.data.frame()
+
+      rownames(dat) <- dat$date
+      dat <- dat %>% dplyr::select(-c("contract", "date"))
+      colnames(dat) <- c("Open", "High", "Low", "Close", "Volume")
+      xts::as.xts(dat)
+    })
+
+    names(xts_list) <- contracts
+
+    data <- do.call(merge, lapply(xts_list, function(x) quantmod::Cl(x)))
+
+    colnames(data) <- contracts
+
+    return(list('data' = data, 'contract' = filename))
+
+  } else{
+    cat("Error parsing csv for PredictIt market data \n")
+    cat("Check that the file path is correct and the format is consistent with the csv file obtained from the PredictIt website.\n")
+    return(ohlcv)
+  }
+}
+
+#' @title Plot historical contract data obtained from the PredictIt website
+#' @description FUnction to make an interactive dygraph plot of historical contract data.
+#'
+#' @param contract_data Named list containing contract name and data of class xts, as returned by predictit::parse_historical_csv()
+#'
+#' @examples
+#' filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
+#' csv_path <- system.file("extdata", filename, package = "predictit")
+#' contract_data <- parse_historical_csv(csv_path)
+#' historical_plot(contract_data)
+#'
+#' @importFrom magrittr "%>%"
+#' @importFrom dygraphs "dyHighlight"
+#' @export
+historical_plot <- function(contract_data){
+  dygraphs::dygraph(
+    contract_data$data,
+    main = contract_data$contract,
+    group = "contract"
+  ) %>%
+    dyHighlight(
+      highlightCircleSize = 5,
+      highlightSeriesBackgroundAlpha = 0.2,
+      hideOnMouseOut = T
+    )
 }
