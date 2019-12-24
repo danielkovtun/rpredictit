@@ -20,6 +20,7 @@ To start off, try running a demo Shiny application included with the package by 
 library(predictit)
 runExample('demo')
 ```
+![](docs/demo.gif)
 
 #### All Markets
 Try `predictit::all_markets()` to return a tibble containing bid and ask data for all PredictIt markets:
