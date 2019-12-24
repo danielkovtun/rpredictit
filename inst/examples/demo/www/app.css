@@ -1,3 +1,7 @@
+body {
+  background-color: #edf2f3db !important;
+}
+
 .well {border: none;
   -webkit-border-radius: 1px;
   border-radius: 1px;
@@ -26,8 +30,15 @@
   margin-bottom:0;
 }
 
+.btn-default {
+  background-color: #edf2f3 !important;
+  color: #07414be3 !important;
+}
+
 #contract_DT .dataTables_scrollHead {
   color:#edf2f3 !important;
 }
 
-#contract_DT .dataTables_filter {color:#edf2f3 !important;}
+#contract_DT .dataTables_filter {color: #edf2f3 !important;}
+#contract_DT .dataTables_wrapper .dataTables_filter input {color: #555 !important;}
+#historical_csv .form-group shiny-input-container, label.control-label {color: #edf2f3 !important;}

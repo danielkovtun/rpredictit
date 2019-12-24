@@ -15,31 +15,29 @@ shinyApp(
       )
     ),
     fluidRow(
-      column(4,
+      column(3,
              wellPanel(
                div(id = "myapp",
-                   actionButton("add_to_watchlist", "Add to Watchlist", width = "20%"),
+                   DTOutput("contract_DT"),
+                   actionButton("add_to_watchlist", "Add to Watchlist", icon = icon("plus"), width = "100%"),
+                   br(),
+                   tags$hr(),
                    fileInput("historical_csv",
                              "Upload Historical Data",
                              accept = c(
                                "text/csv",
                                "text/comma-separated-values,text/plain",
                                ".csv")
-                   ),
-                   DTOutput("contract_DT")
+                   )
                    )
                )
              ),
-      column(8,
+      column(9,
              uiOutput("watchlist_refresh"),
-             DTOutput("watchlist_DT")
-      )
-    ),
-    fluidRow(
-      column(12, align = "center",
+             DTOutput("watchlist_DT"),
              dygraphOutput("historical_plot")
-             )
       )
+    )
   ),
 
   server = function(input, output, session) {
@@ -105,15 +103,30 @@ shinyApp(
 
       # Set up datatables options config
       options_list <- list(
+        initComplete = JS(
+          "function(settings, json) {",
+          "$(this.api().table().header()).css({'font-size': '90%'});",
+          "$(this.api().table().body()).css({'font-size': '90%'});",
+          "}"
+        ),
         ordering = T, dom = "frt",
         pageLength = nrow(watchlist_data), paging = FALSE,
-        columnDefs = list(list(className = "dt-left", targets = "_all")),
-        scroller = T, scrollY = "50vh"
+        columnDefs = list(list(className = "dt-left", targets = "_all"))
       )
 
+      # If the table gets too large, enable dynamic height scrolling
+      if (nrow(watchlist_data) > 8) {
+        options_list$scrollY <- "60vh"
+        options_list$scroller <- TRUE
+      }
+
       watchlist_data <- predictit::format_market_data(watchlist_data)
-      watchlist_data %>% dplyr::select(-c("Market id", "Contract id"))
+      updated_at <- unique(watchlist_data$Timestamp)
+
+      watchlist_data <- watchlist_data %>% dplyr::select(-c("Timestamp", "Market id", "Contract id"))
       DT::datatable(watchlist_data,
+                    filter = "top",
+                    caption = tags$em(paste0("Updated at ", updated_at)),
                     escape = F,
                     fillContainer = F,
                     rownames = F,
@@ -125,7 +138,7 @@ shinyApp(
     # Dynamic UI to show the actionButton for refreshing watchlist only when the data exists
     output$watchlist_refresh <- renderUI({
       req(rv$watchlist)
-      actionButton("refresh_watchlist", "Refresh", icon = icon("refresh"), width = "20%")
+      actionButton("refresh_watchlist", "Refresh", icon = icon("refresh"), width = "10%")
     })
 
     # observeEvent for retrieving most recent watchlist bid/ask data
