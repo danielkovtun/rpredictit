@@ -2,7 +2,7 @@
 % Please edit documentation in R/runExample.R
 \name{runExample}
 \alias{runExample}
-\title{Run predictit examples}
+\title{Run rpredictit examples}
 \usage{
 runExample(example)
 }
@@ -10,8 +10,8 @@ runExample(example)
 \item{example}{The app to launch}
 }
 \description{
-Launch a \code{predictit} example Shiny app that shows how to
-easily use \code{predictit} in an app.\cr\cr
+Launch a \code{rpredictit} example Shiny app that shows how to
+easily use \code{rpredictit} in an app.\cr\cr
 Run without any arguments to see a list of available example apps.
 }
 \examples{

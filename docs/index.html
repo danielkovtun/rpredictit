@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R Interface to the PredictIt API • predictit</title>
+<title>R Interface to the PredictIt API • rpredictit</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
@@ -32,7 +32,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">predictit</a>
+        <a class="navbar-link" href="index.html">rpredictit</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
@@ -54,7 +54,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/danielkovtun/predictit">
+  <a href="https://github.com/danielkovtun/rpredictit">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -74,16 +74,17 @@
 <div id="an-r-interface-to-the-predictit-api" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#an-r-interface-to-the-predictit-api" class="anchor"></a>An R interface to the PredictIt API</h1></div>
-<p>This package provides an interface to the PredictIt public API (<a href="https://www.predictit.org/api/" class="uri">https://www.predictit.org/api/</a>). License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data. In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.</p>
+<p>The <code>rpredictit</code> package provides an interface to the PredictIt public API (<a href="https://www.predictit.org/api/" class="uri">https://www.predictit.org/api/</a>). In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.</p>
+<p><code>rpredictit</code> is not affiliated with any predictive markets and is presented for informational purposes only. Always confirm with your own research before making an investment. <strong>License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data.</strong></p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You may install the stable version from CRAN, or the development version using <em>devtools</em>:</p>
 <pre class="{r}"><code># install from CRAN
-install.packages('predictit')
+install.packages('rpredictit')
 
 # or the development version, via devtools
-devtools::install_github('danielkovtun/predictit')</code></pre>
+devtools::install_github('danielkovtun/rpredictit')</code></pre>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -92,15 +93,15 @@ devtools::install_github('danielkovtun/predictit')</code></pre>
 <h4 class="hasAnchor">
 <a href="#demo-shiny-application" class="anchor"></a>Demo Shiny Application</h4>
 <p>To start off, try running a demo Shiny application included with the package by running:</p>
-<pre class="{r}"><code>library(predictit)
+<pre class="{r}"><code>library(rpredictit)
 runExample('demo')</code></pre>
 <p><img src="demo.gif"></p>
 </div>
 <div id="all-markets" class="section level4">
 <h4 class="hasAnchor">
 <a href="#all-markets" class="anchor"></a>All Markets</h4>
-<p>Try <code><a href="reference/all_markets.html">predictit::all_markets()</a></code> to return a tibble containing bid and ask data for all PredictIt markets:</p>
-<pre class="{r}"><code>library(predictit)
+<p>Try <code><a href="reference/all_markets.html">rpredictit::all_markets()</a></code> to return a tibble containing bid and ask data for all PredictIt markets:</p>
+<pre class="{r}"><code>library(rpredictit)
 all_markets()
 
 # A tibble: 1,096 x 20
@@ -121,36 +122,36 @@ all_markets()
 <div id="interactive-table" class="section level4">
 <h4 class="hasAnchor">
 <a href="#interactive-table" class="anchor"></a>Interactive Table</h4>
-<p>Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to <code><a href="reference/markets_table.html">predictit::markets_table()</a></code>:</p>
-<pre class="{r}"><code>data &lt;- predictit::all_markets()
-predictit::markets_table(data)</code></pre>
+<p>Alternatively, to return an interactive htmlwidget (DT::datatable) table containing HTML formatted market data, pass the returned bid/ask data to <code><a href="reference/markets_table.html">rpredictit::markets_table()</a></code>:</p>
+<pre class="{r}"><code>data &lt;- rpredictit::all_markets()
+rpredictit::markets_table(data)</code></pre>
 <p><iframe src="interactive_table.html" width="100%" height="550"></iframe></p>
 </div>
 <div id="interactive-plot" class="section level4">
 <h4 class="hasAnchor">
 <a href="#interactive-plot" class="anchor"></a>Interactive Plot</h4>
-<p>To plot historical prices, download a csv file for a specific contract from PredictIt’s website and pass the file path to <code>predictit::parse_historical_ohlcv()</code>. Then, pass in the returned contract data object to <code><a href="reference/historical_plot.html">predictit::historical_plot()</a></code>:</p>
+<p>To plot historical prices, download a csv file for a specific contract from PredictIt’s website and pass the file path to <code>rpredictit::parse_historical_ohlcv()</code>. Then, pass in the returned contract data object to <code><a href="reference/historical_plot.html">rpredictit::historical_plot()</a></code>:</p>
 <pre class="{r}"><code>filename &lt;- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
-csv_path &lt;- system.file("extdata", filename, package = "predictit")
-contract_data &lt;- predictit::parse_historical_ohlcv(csv_path)
-predictit::historical_plot(contract_data)</code></pre>
+csv_path &lt;- system.file("extdata", filename, package = "rpredictit")
+contract_data &lt;- rpredictit::parse_historical_ohlcv(csv_path)
+rpredictit::historical_plot(contract_data)</code></pre>
 <p><iframe src="plot.html" width="100%" height="550"></iframe></p>
 </div>
 <div id="twitter-markets" class="section level4">
 <h4 class="hasAnchor">
 <a href="#twitter-markets" class="anchor"></a>Twitter Markets</h4>
-<p>If you are only interested in “Tweet count” markets, use <code><a href="reference/tweet_markets.html">predictit::tweet_markets()</a></code> to return all available “Tweet” markets:</p>
-<pre class="{r}"><code>data &lt;- predictit::tweet_markets()
-predictit::markets_table(data)</code></pre>
+<p>If you are only interested in “Tweet count” markets, use <code><a href="reference/tweet_markets.html">rpredictit::tweet_markets()</a></code> to return all available “Tweet” markets:</p>
+<pre class="{r}"><code>data &lt;- rpredictit::tweet_markets()
+rpredictit::markets_table(data)</code></pre>
 <p><img src="tweet_table.png"></p>
 </div>
 <div id="individual-market" class="section level4">
 <h4 class="hasAnchor">
 <a href="#individual-market" class="anchor"></a>Individual Market</h4>
-<p>To return data for a specific market, use <code><a href="reference/single_market.html">predictit::single_market(id)</a></code>, where <code>id</code> refers to the numerical code pertaining to the market of interest. You can find a market’s numerical code by consulting its URL or by first calling the all markets API (<code><a href="reference/all_markets.html">all_markets()</a></code>)</p>
-<pre class="{r}"><code>markets &lt;- predictit::all_markets()
+<p>To return data for a specific market, use <code><a href="reference/single_market.html">rpredictit::single_market(id)</a></code>, where <code>id</code> refers to the numerical code pertaining to the market of interest. You can find a market’s numerical code by consulting its URL or by first calling the all markets API (<code><a href="reference/all_markets.html">all_markets()</a></code>)</p>
+<pre class="{r}"><code>markets &lt;- rpredictit::all_markets()
 id &lt;- markets$id[1]
-predictit::single_market(id)
+rpredictit::single_market(id)
 
 # A tibble: 4 x 20
      id name  shortName image url   timeStamp           status contract_id dateEnd contract_image contract_name contract_shortN… contract_status lastTradePrice bestBuyYesCost
@@ -160,7 +161,7 @@ predictit::single_market(id)
 3  2721 Whic… Which pa… http… http… 2019-12-23 14:51:03 Open          4388 N/A     https://az620… Libertarian   Libertarian      Open                      0.02           0.03
 4  2721 Whic… Which pa… http… http… 2019-12-23 14:51:03 Open          4391 N/A     https://az620… Green         Green            Open                      0.02           0.03
 # … with 5 more variables: bestBuyNoCost &lt;dbl&gt;, bestSellYesCost &lt;dbl&gt;, bestSellNoCost &lt;dbl&gt;, lastClosePrice &lt;dbl&gt;, displayOrder &lt;int&gt;</code></pre>
-<p>See the full documentation at <a href="https://danielkovtun.github.io/predictit" class="uri">https://danielkovtun.github.io/predictit</a>.</p>
+<p>See the full documentation at <a href="https://danielkovtun.github.io/rpredictit" class="uri">https://danielkovtun.github.io/rpredictit</a>.</p>
 </div>
 </div>
 </div>
@@ -170,9 +171,9 @@ predictit::single_market(id)
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/danielkovtun/predictit">https://​github.com/​danielkovtun/​predictit</a>
+<li>Browse source code at <br><a href="https://github.com/danielkovtun/rpredictit">https://​github.com/​danielkovtun/​rpredictit</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/danielkovtun/predictit/issues">https://​github.com/​danielkovtun/​predictit/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/danielkovtun/rpredictit/issues">https://​github.com/​danielkovtun/​rpredictit/​issues</a>
 </li>
 </ul>
 </div>

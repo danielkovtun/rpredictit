@@ -1,4 +1,4 @@
-Package: predictit
+Package: rpredictit
 Title: R Interface to the PredictIt API
 Version: 0.0.1
 Authors@R: person('Daniel', 'Kovtun', email = 'quantumfusetrader@gmail.com', role = c('cre', 'aut'))
@@ -21,8 +21,8 @@ Imports:
     xts,
     shiny
 RoxygenNote: 6.1.1
-URL: https://github.com/danielkovtun/predictit
-BugReports: https://github.com/danielkovtun/predictit/issues
+URL: https://github.com/danielkovtun/rpredictit
+BugReports: https://github.com/danielkovtun/rpredictit/issues
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
