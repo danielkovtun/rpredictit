@@ -1,0 +1,150 @@
+library(shiny)
+library(predictit)
+library(DT)
+library(dygraphs)
+
+shinyApp(
+  ui = fluidPage(
+    tags$head(
+      tags$link(rel = "stylesheet", type = "text/css", href = "app.css")
+    ),
+    tags$style(
+      HTML(
+        "table.dataTable tr.selected td,table.dataTable td.selected
+        {background-color: #edf2f3 !important;}"
+      )
+    ),
+    fluidRow(
+      column(4,
+             wellPanel(
+               div(id = "myapp",
+                   actionButton("add_to_watchlist", "Add to Watchlist", width = "20%"),
+                   fileInput("historical_csv",
+                             "Upload Historical Data",
+                             accept = c(
+                               "text/csv",
+                               "text/comma-separated-values,text/plain",
+                               ".csv")
+                   ),
+                   DTOutput("contract_DT")
+                   )
+               )
+             ),
+      column(8,
+             uiOutput("watchlist_refresh"),
+             DTOutput("watchlist_DT")
+      )
+    ),
+    fluidRow(
+      column(12, align = "center",
+             dygraphOutput("historical_plot")
+             )
+      )
+  ),
+
+  server = function(input, output, session) {
+
+    rv <- reactiveValues(contract_data = NULL, table_data = NULL, watchlist = NULL)
+
+    markets <- reactive({
+      predictit::all_markets()
+    })
+
+    output$contract_DT <- renderDT({
+      req(markets())
+
+      contract_data <- markets()
+      table_data <- predictit::format_market_data(contract_data)
+
+      rv$contract_data <- contract_data
+      rv$table_data <- table_data
+
+      # Set up datatables options config
+      options_list <- list(
+        ordering = T, dom = "frt",
+        pageLength = nrow(contract_data), paging = FALSE,
+        columnDefs = list(list(className = "dt-left", targets = "_all")),
+        scroller = T, scrollY = "50vh"
+      )
+
+      table_data <- table_data %>%
+        dplyr::select("Market", "Expiry", "Market id") %>%
+        dplyr::distinct()
+
+      rv$display_data <- table_data
+      table_data <- table_data %>% dplyr::select(-c("Market id"))
+
+      DT::datatable(table_data,
+                    escape = F,
+                    fillContainer = F,
+                    rownames = F,
+                    class = "cell-border compact",
+                    options = options_list
+      )
+    })
+
+    observeEvent(input$add_to_watchlist, {
+      req(input$contract_DT_rows_selected)
+
+      id_idx <- rv$display_data$`Market id`[input$contract_DT_rows_selected]
+      watchlist_data <- rv$contract_data %>%
+        dplyr::filter(id %in% id_idx)
+
+      watchlist <- rbind(rv$watchlist, watchlist_data) %>%
+        dplyr::distinct_at(dplyr::vars("contract_id"), .keep_all = T)
+
+      rv$watchlist <- watchlist
+
+      watchlist_ids <- unique(rv$watchlist$id)
+    })
+
+    output$watchlist_DT <- renderDT({
+      req(rv$watchlist)
+
+      watchlist_data <- rv$watchlist
+
+      # Set up datatables options config
+      options_list <- list(
+        ordering = T, dom = "frt",
+        pageLength = nrow(watchlist_data), paging = FALSE,
+        columnDefs = list(list(className = "dt-left", targets = "_all")),
+        scroller = T, scrollY = "50vh"
+      )
+
+      watchlist_data <- predictit::format_market_data(watchlist_data)
+      watchlist_data %>% dplyr::select(-c("Market id", "Contract id"))
+      DT::datatable(watchlist_data,
+                    escape = F,
+                    fillContainer = F,
+                    rownames = F,
+                    class = "cell-border compact",
+                    options = options_list
+      )
+    })
+
+    # Dynamic UI to show the actionButton for refreshing watchlist only when the data exists
+    output$watchlist_refresh <- renderUI({
+      req(rv$watchlist)
+      actionButton("refresh_watchlist", "Refresh", icon = icon("refresh"), width = "20%")
+    })
+
+    # observeEvent for retrieving most recent watchlist bid/ask data
+    observeEvent(input$refresh_watchlist, {
+      req(rv$watchlist)
+      ids <- unique(rv$watchlist$id)
+
+      data <- lapply(1:length(ids), function(x) predictit::single_market(ids[x]))
+      data <- dplyr::bind_rows(data)
+
+      rv$watchlist <- data
+    })
+
+    # Dygraph containing historical contract prices from an uploaded csv file
+    output$historical_plot <- renderDygraph({
+      req(input$historical_csv)
+      inFile = input$historical_csv
+      contract_data <- predictit::parse_historical_csv(inFile$datapath, filename = inFile$name)
+      predictit::historical_plot(contract_data)
+    })
+  }
+)
