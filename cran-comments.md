@@ -6,5 +6,6 @@
 There were no ERRORs, or WARNINGs.
 
 There was 1 NOTE:
-* This is a new submission to CRAN
+* Maintainer: ‘Daniel Kovtun <quantumfusetrader@gmail.com>’
+* New submission
 

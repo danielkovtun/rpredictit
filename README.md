@@ -23,7 +23,7 @@ To start off, try running a demo Shiny application included with the package by 
 library(rpredictit)
 runExample('demo')
 ```
-![](docs/demo.gif)
+
 
 #### All Markets
 Try `rpredictit::all_markets()` to return a tibble containing bid and ask data for all PredictIt markets:
@@ -55,7 +55,6 @@ Alternatively, to return an interactive htmlwidget (DT::datatable) table contain
 data <- rpredictit::all_markets()
 rpredictit::markets_table(data)
 ```
-![](docs/markets_table.png)
 
 #### Interactive Plot
 To plot historical prices, download a csv file for a specific contract from PredictIt's website and pass the file path to `rpredictit::parse_historical_ohlcv()`.
@@ -66,7 +65,6 @@ csv_path <- system.file("extdata", filename, package = "rpredictit")
 contract_data <- rpredictit::parse_historical_ohlcv(csv_path)
 rpredictit::historical_plot(contract_data)
 ```
-![](docs/interactive_plot.png)
 
 #### Twitter Markets
 If you are only interested in "Tweet count" markets, use `rpredictit::tweet_markets()` to return all available "Tweet" markets:
@@ -74,7 +72,6 @@ If you are only interested in "Tweet count" markets, use `rpredictit::tweet_mark
 data <- rpredictit::tweet_markets()
 rpredictit::markets_table(data)
 ```
-![](docs/tweet_table.png)
 
 #### Individual Market
 To return data for a specific market, use `rpredictit::single_market(id)`, where `id` refers to the numerical code pertaining to the market of interest. 
