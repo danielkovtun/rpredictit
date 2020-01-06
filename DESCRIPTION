@@ -3,8 +3,9 @@ Title: R Interface to the PredictIt API
 Version: 0.0.1
 Authors@R: person('Daniel', 'Kovtun', email = 'quantumfusetrader@gmail.com', role = c('cre', 'aut'))
 Description: An R interface for the PredictIt public API (<https://www.predictit.org/api/>).
+    In addition to providing a wrapper to retrieve market data, this package includes visualization functions for plotting historical price data and exploring available markets.
+    The package also comes with a demo shiny application for illustrating example use cases.
     License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data.
-    In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -14,7 +15,6 @@ Imports:
     dplyr,
     DT,
     dygraphs,
-    htmltools,
     magrittr,
     stringr,
     quantmod,
