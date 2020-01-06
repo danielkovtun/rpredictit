@@ -8,3 +8,4 @@ revdep/
 download/
 predictit_*.pdf
 _pkgdown.yml
+inst/doc
