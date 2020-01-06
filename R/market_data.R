@@ -136,13 +136,13 @@ format_market_data <- function(data){
   df <- create_hyperlinked_df(data$url, data$shortName)
 
   market_html <- lapply(1:length(data$image), function(i){
-    htmltools::HTML(paste0("<img src='", data$image[i], "' width='50' height='50' />", '<br>', df$hyperlink[i]))
+    shiny::HTML(paste0("<img src='", data$image[i], "' width='50' height='50' />", '<br>', df$hyperlink[i]))
   }) %>% unlist()
 
   contract_html <- lapply(1:length(data$contract_image), function(x){
     cname <- data$contract_shortName[x]
     img <- data$contract_image[x]
-    htmltools::HTML(paste0("<img src='", img, "' width='50' height='50' />", '<br>', cname))
+    shiny::HTML(paste0("<img src='", img, "' width='50' height='50' />", '<br>', cname))
   }) %>% unlist()
 
   data <- data %>%
