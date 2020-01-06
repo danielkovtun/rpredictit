@@ -121,7 +121,7 @@ shinyApp(
       }
 
       watchlist_data <- rpredictit::format_market_data(watchlist_data)
-      updated_at <- unique(watchlist_data$Timestamp)
+      updated_at <- watchlist_data$Timestamp[1]
 
       watchlist_data <- watchlist_data %>% dplyr::select(-c("Timestamp", "Market id", "Contract id"))
       DT::datatable(watchlist_data,
