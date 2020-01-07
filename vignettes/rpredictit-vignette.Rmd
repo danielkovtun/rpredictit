@@ -24,7 +24,7 @@ In addition to providing a wrapper to retrieve market data, this package include
 
 ## Installation
 
-Once releaed, you may install the stable version from CRAN, or the development version using *devtools*:
+Once released, you may install the stable version from CRAN, or the development version using *devtools*:
 ```{r setup, eval=FALSE}
 # development version, via devtools
 devtools::install_github('danielkovtun/rpredictit')

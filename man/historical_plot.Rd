@@ -10,7 +10,7 @@ historical_plot(contract_data)
 \item{contract_data}{Named list containing contract name and data of class xts, as returned by rpredictit::parse_historical_csv()}
 }
 \description{
-FUnction to make an interactive dygraph plot of historical contract data.
+Function to make an interactive dygraph plot of historical contract data.
 }
 \examples{
 filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"

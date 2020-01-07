@@ -288,7 +288,7 @@ parse_historical_csv <- function(csv_path, filename = NA){
 }
 
 #' @title Plot historical contract data obtained from the PredictIt website
-#' @description FUnction to make an interactive dygraph plot of historical contract data.
+#' @description Function to make an interactive dygraph plot of historical contract data.
 #'
 #' @param contract_data Named list containing contract name and data of class xts, as returned by rpredictit::parse_historical_csv()
 #'
