@@ -1,7 +1,8 @@
 ## Test environments
-* local Windows 10 install x86_64-w64-mingw32 (64-bit), R 3.6.1
+* local Windows 10 install x86_64-w64-mingw32 (64-bit), R 3.6.1 and R-devel
 * ubuntu 18.04, R 3.6.1
-
+* ubuntu 16.04.6 LTS (on travis-ci), R 3.6.2
+ 
 ## R CMD check results
 There were no ERRORs, or WARNINGs.
 
