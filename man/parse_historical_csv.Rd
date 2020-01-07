@@ -2,17 +2,17 @@
 % Please edit documentation in R/market_data.R
 \name{parse_historical_csv}
 \alias{parse_historical_csv}
-\title{Parse csv file containing historical OHLCV data}
+\title{Parse 'csv' file containing historical OHLCV data}
 \usage{
 parse_historical_csv(csv_path, filename = NA)
 }
 \arguments{
-\item{csv_path}{Path to a csv file containing historical OHLCV data for a specific contract (Open, High, Low, Close, Volume)}
+\item{csv_path}{Path to a 'csv' file containing historical OHLCV data for a specific contract (Open, High, Low, Close, Volume)}
 
-\item{filename}{Optional name to give the csv file when the filepath is derived from a temporary directory}
+\item{filename}{Optional name to give the 'csv' file when the filepath is derived from a temporary directory}
 }
 \description{
-Helper function to parse a csv file obtained from the PredictIt website, containing historical OHLCV data, into an object of class xts.
+Helper function to parse a 'csv' file obtained from the 'PredictIt' website, containing historical OHLCV data, into an object of class 'xts'.
 }
 \examples{
 filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"

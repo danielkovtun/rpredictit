@@ -2,12 +2,12 @@
 % Please edit documentation in R/market_data.R
 \name{tweet_markets}
 \alias{tweet_markets}
-\title{Get bids and asks for all PredictIt "Tweet" markets}
+\title{Get bids and asks for all 'PredictIt' "Tweet" markets}
 \usage{
 tweet_markets()
 }
 \description{
-Wrapper function to get all available PredictIt "Tweet count" markets and contract prices.
+Wrapper function to get all available 'PredictIt' "Tweet count" markets and contract prices.
 }
 \examples{
 tweet_markets()

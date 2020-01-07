@@ -2,7 +2,7 @@
 % Please edit documentation in R/market_data.R
 \name{single_market}
 \alias{single_market}
-\title{Get bids and asks for a specific PredictIt market}
+\title{Get bids and asks for a specific 'PredictIt' market}
 \usage{
 single_market(id)
 }

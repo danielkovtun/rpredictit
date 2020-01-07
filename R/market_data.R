@@ -1,5 +1,5 @@
-#' @title Get bids and asks for all PredictIt markets
-#' @description Wrapper function to get all available PredictIt markets and contract prices.
+#' @title Get bids and asks for all 'PredictIt' markets
+#' @description Wrapper function to get all available 'PredictIt' markets and contract prices.
 #'
 #' @examples
 #' markets <- all_markets()
@@ -51,8 +51,8 @@ all_markets <- function(){
 }
 
 
-#' @title Get bids and asks for all PredictIt "Tweet" markets
-#' @description Wrapper function to get all available PredictIt "Tweet count" markets and contract prices.
+#' @title Get bids and asks for all 'PredictIt' "Tweet" markets
+#' @description Wrapper function to get all available 'PredictIt' "Tweet count" markets and contract prices.
 #'
 #' @examples
 #' tweet_markets()
@@ -68,7 +68,7 @@ tweet_markets <- function(){
 }
 
 
-#' @title Get bids and asks for a specific PredictIt market
+#' @title Get bids and asks for a specific 'PredictIt' market
 #' @description Wrapper function to get data for a specific market.
 #'
 #' @param id Numerical code pertaining to the market. You can find a market's numerical code by consulting its URL or by first calling the all markets API.
@@ -122,9 +122,9 @@ create_hyperlinked_df <- function(links, titles) {
 
 
 #' @title Format bid and ask market data with HTML
-#' @description Wrapper function to apply HTML formatting to PredictIt market data. Can be displayed in a shiny app, or standalone in an htmlwidget (e.g. DT::datatable).
+#' @description Wrapper function to apply HTML formatting to 'PredictIt' market data. Can be displayed in a 'shiny' app, or standalone in an 'htmlwidget' (e.g. 'DT::datatable').
 #'
-#' @param data PredictIt market data, of class data.frame or tibble, as returned by rpredictit::all_markets() or rpredictit::tweet_markets()
+#' @param data 'PredictIt' market data, of class 'data.frame' or 'tibble', as returned by 'rpredictit::all_markets()' or 'rpredictit::tweet_markets()'
 #' @examples
 #' data <- all_markets()
 #' format_market_data(data)
@@ -185,10 +185,10 @@ format_market_data <- function(data){
 }
 
 
-#' @title Get JavaScript datatable containing bids and asks for all PredictIt markets
-#' @description Wrapper function to return a DT::datatable containing PredictIt market data. Can be displayed in a shiny app, RMarkdown document, or exported via htmlwidgets::saveWidget.
+#' @title Get JavaScript 'datatable' containing bids and asks for all 'PredictIt' markets
+#' @description Wrapper function to return a DT::datatable containing 'PredictIt' market data. Can be displayed in a 'shiny' app, RMarkdown document, or exported via 'htmlwidgets::saveWidget'.
 #'
-#' @param data PredictIt market data, of class data.frame or tibble, as returned by rpredictit::all_markets() or rpredictit::tweet_markets()
+#' @param data 'PredictIt' market data, of class 'data.frame' or 'tibble', as returned by 'rpredictit::all_markets()' or 'rpredictit::tweet_markets()'
 #'
 #' @examples
 #' data <- all_markets()
@@ -215,11 +215,11 @@ markets_table <- function(data){
                 ))
 }
 
-#' @title Parse csv file containing historical OHLCV data
-#' @description Helper function to parse a csv file obtained from the PredictIt website, containing historical OHLCV data, into an object of class xts.
+#' @title Parse 'csv' file containing historical OHLCV data
+#' @description Helper function to parse a 'csv' file obtained from the 'PredictIt' website, containing historical OHLCV data, into an object of class 'xts'.
 #'
-#' @param csv_path Path to a csv file containing historical OHLCV data for a specific contract (Open, High, Low, Close, Volume)
-#' @param filename Optional name to give the csv file when the filepath is derived from a temporary directory
+#' @param csv_path Path to a 'csv' file containing historical OHLCV data for a specific contract (Open, High, Low, Close, Volume)
+#' @param filename Optional name to give the 'csv' file when the filepath is derived from a temporary directory
 #'
 #' @examples
 #' filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
@@ -287,10 +287,10 @@ parse_historical_csv <- function(csv_path, filename = NA){
   }
 }
 
-#' @title Plot historical contract data obtained from the PredictIt website
-#' @description Function to make an interactive dygraph plot of historical contract data.
+#' @title Plot historical contract data obtained from the 'PredictIt' website
+#' @description Function to make an interactive 'dygraph' plot of historical contract data.
 #'
-#' @param contract_data Named list containing contract name and data of class xts, as returned by rpredictit::parse_historical_csv()
+#' @param contract_data Named list containing contract name and data of class 'xts', as returned by 'rpredictit::parse_historical_csv()'
 #'
 #' @examples
 #' filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"

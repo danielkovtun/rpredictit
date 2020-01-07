@@ -2,15 +2,15 @@
 % Please edit documentation in R/market_data.R
 \name{historical_plot}
 \alias{historical_plot}
-\title{Plot historical contract data obtained from the PredictIt website}
+\title{Plot historical contract data obtained from the 'PredictIt' website}
 \usage{
 historical_plot(contract_data)
 }
 \arguments{
-\item{contract_data}{Named list containing contract name and data of class xts, as returned by rpredictit::parse_historical_csv()}
+\item{contract_data}{Named list containing contract name and data of class 'xts', as returned by 'rpredictit::parse_historical_csv()'}
 }
 \description{
-Function to make an interactive dygraph plot of historical contract data.
+Function to make an interactive 'dygraph' plot of historical contract data.
 }
 \examples{
 filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"

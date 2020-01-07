@@ -2,12 +2,12 @@
 % Please edit documentation in R/market_data.R
 \name{all_markets}
 \alias{all_markets}
-\title{Get bids and asks for all PredictIt markets}
+\title{Get bids and asks for all 'PredictIt' markets}
 \usage{
 all_markets()
 }
 \description{
-Wrapper function to get all available PredictIt markets and contract prices.
+Wrapper function to get all available 'PredictIt' markets and contract prices.
 }
 \examples{
 markets <- all_markets()

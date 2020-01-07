@@ -57,7 +57,7 @@ rpredictit::markets_table(data)
 ```
 
 #### Interactive Plot
-To plot historical prices, download a csv file for a specific contract from PredictIt's website and pass the file path to `rpredictit::parse_historical_csv()`.
+To plot historical prices, download a 'csv' file for a specific contract from PredictIt's website and pass the file path to `rpredictit::parse_historical_csv()`.
 Then, pass in the returned contract data object to `rpredictit::historical_plot()`:
 ```{r}
 filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
