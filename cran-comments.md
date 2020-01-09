@@ -1,3 +1,9 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Changed the invalid URL in the DESCRIPTION and README.md files to one that can pass CRAN URL checks.
+* The 'PredictIt' API does not allow 'HEAD' requests, and therefore returns a 405 status value when using `curl -I -L` on the command line.
+
 ## Test environments
 * local Windows 10 install x86_64-w64-mingw32 (64-bit), R 3.6.1 and R-devel
 * Windows Server 2008 R2 SP1 (on rhub), R-devel, 32/64 bit
