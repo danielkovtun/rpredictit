@@ -1,5 +1,5 @@
 # An R interface to the PredictIt API
-The `rpredictit` package provides an interface to the PredictIt public API (https://www.predictit.org/api/). In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
+The `rpredictit` package provides an interface to the PredictIt public API (https://www.predictit.org/api/marketdata/all/). In addition to providing a wrapper to retrieve market data, this package includes visualization and analysis functions.
 
 `rpredictit` is not affiliated with any predictive markets and is presented for informational purposes only. Always confirm with your own research before making an investment. 
 **License to use data made available via the API is for non-commercial use and PredictIt is the sole source of such data.**
