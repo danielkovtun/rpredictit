@@ -44,8 +44,10 @@ all_markets <- function(){
     return(market_contracts)
 
   } else{
-    cat("Error fetching PredictIt market data \nCheck your internet connection and try again \n")
-    cat("Note: do not abuse the API by requesting data more than once every 60 seconds\n")
+    err <- "Error fetching PredictIt market data \nCheck your internet connection and try again \n"
+    note <- "\nNote: do not abuse the API by requesting data more than once every 60 seconds\n"
+    warn_msg <- paste0(err, note)
+    warning(warn_msg)
     return(response)
   }
 }
@@ -281,8 +283,10 @@ parse_historical_csv <- function(csv_path, filename = NA){
     return(list('data' = data, 'contract' = filename))
 
   } else{
-    cat("Error parsing csv for PredictIt market data \n")
-    cat("Check that the file path is correct and the format is consistent with the csv file obtained from the PredictIt website.\n")
+    err <- "Error parsing csv for PredictIt market data \n"
+    note <- "Check that the file path is correct and the format is consistent with the csv file obtained from the PredictIt website.\n"
+    warn_msg <- paste0(err, note)
+    warning(warn_msg)
     return(ohlcv)
   }
 }
