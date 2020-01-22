@@ -21,7 +21,7 @@ An interactive \code{\link[DT:datatable]{datatable}} object
 Wrapper function to return a
   \code{\link[DT:datatable]{datatable}} containing 'PredictIt' market data.
   Can be displayed in a \code{\link[=shiny]{shinyApp}}, RMarkdown document,
-  or exported via \code{\link[=htmlwidgets]{saveWidget()}}.
+  or exported via \code{\link[htmlwidgets:saveWidget]{saveWidget()}}.
 }
 \examples{
 data <- all_markets()

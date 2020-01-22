@@ -207,7 +207,7 @@ format_market_data <- function(data){
 #' @description Wrapper function to return a
 #'   \code{\link[DT:datatable]{datatable}} containing 'PredictIt' market data.
 #'   Can be displayed in a \code{\link[=shiny]{shinyApp}}, RMarkdown document,
-#'   or exported via \code{\link[=htmlwidgets]{saveWidget()}}.
+#'   or exported via \code{\link[htmlwidgets:saveWidget]{saveWidget()}}.
 #'
 #' @param data 'PredictIt' market data, of class \code{\link[=base]{data.frame}}
 #'   or \code{\link[=tibble]{tibble}}, as returned by
