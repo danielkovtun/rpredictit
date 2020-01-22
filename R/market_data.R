@@ -202,14 +202,14 @@ markets_table <- function(data){
   data <- format_market_data(data)
   DT::datatable(data,
                 class ='cell-border stripe',
-                escape = F,
-                rownames = F,
+                escape = FALSE,
+                rownames = FALSE,
                 extensions = 'Scroller',
                 options = list(
                   autoWidth = TRUE,
                   deferRender = TRUE,
                   scrollY = 400,
-                  scrollX = T,
+                  scrollX = TRUE,
                   scroller = TRUE,
                   columnDefs = list(
                     list(width = '10%', targets = list(2, 3, 4, 5))
@@ -235,7 +235,7 @@ markets_table <- function(data){
 #' @export
 parse_historical_csv <- function(csv_path, filename = NA){
   ohlcv <- tryCatch({
-    read.csv(csv_path, stringsAsFactors = F)
+    read.csv(csv_path, stringsAsFactors = FALSE)
   },
     error = function(error_message) {
       return(NA)
@@ -314,6 +314,6 @@ historical_plot <- function(contract_data){
     dyHighlight(
       highlightCircleSize = 5,
       highlightSeriesBackgroundAlpha = 0.2,
-      hideOnMouseOut = T
+      hideOnMouseOut = TRUE
     )
 }

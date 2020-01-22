@@ -42,5 +42,5 @@ runExample <- function(example) {
                    example, validExamples))
   }
 
-  shiny::runApp(appDir, display.mode = "normal", launch.browser = T)
+  shiny::runApp(appDir, display.mode = "normal", launch.browser = TRUE)
 }

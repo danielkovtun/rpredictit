@@ -59,10 +59,10 @@ shinyApp(
 
       # Set up datatables options config
       options_list <- list(
-        ordering = T, dom = "frt",
+        ordering = TRUE, dom = "frt",
         pageLength = nrow(contract_data), paging = FALSE,
         columnDefs = list(list(className = "dt-left", targets = "_all")),
-        scroller = T, scrollY = "50vh"
+        scroller = TRUE, scrollY = "50vh"
       )
 
       table_data <- table_data %>%
@@ -73,9 +73,9 @@ shinyApp(
       table_data <- table_data %>% dplyr::select(-c("Market id"))
 
       DT::datatable(table_data,
-                    escape = F,
-                    fillContainer = F,
-                    rownames = F,
+                    escape = FALSE,
+                    fillContainer = FALSE,
+                    rownames = FALSE,
                     class = "cell-border compact",
                     options = options_list
       )
@@ -89,7 +89,7 @@ shinyApp(
         dplyr::filter(id %in% id_idx)
 
       watchlist <- rbind(rv$watchlist, watchlist_data) %>%
-        dplyr::distinct_at(dplyr::vars("contract_id"), .keep_all = T)
+        dplyr::distinct_at(dplyr::vars("contract_id"), .keep_all = TRUE)
 
       rv$watchlist <- watchlist
 
@@ -109,7 +109,7 @@ shinyApp(
           "$(this.api().table().body()).css({'font-size': '90%'});",
           "}"
         ),
-        ordering = T, dom = "frt",
+        ordering = TRUE, dom = "frt",
         pageLength = nrow(watchlist_data), paging = FALSE,
         columnDefs = list(list(className = "dt-left", targets = "_all"))
       )
@@ -127,9 +127,9 @@ shinyApp(
       DT::datatable(watchlist_data,
                     filter = "top",
                     caption = tags$em(paste0("Updated at ", updated_at)),
-                    escape = F,
-                    fillContainer = F,
-                    rownames = F,
+                    escape = FALSE,
+                    fillContainer = FALSE,
+                    rownames = FALSE,
                     class = "cell-border compact",
                     options = options_list
       )
