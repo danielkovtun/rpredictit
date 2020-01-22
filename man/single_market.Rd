@@ -7,7 +7,13 @@
 single_market(id)
 }
 \arguments{
-\item{id}{Numerical code pertaining to the market. You can find a market's numerical code by consulting its URL or by first calling the all markets API.}
+\item{id}{Numerical code pertaining to the market. You can find a market's
+numerical code by consulting its URL or by first calling the all markets
+API.}
+}
+\value{
+A \code{\link[=tibble]{tibble}} containing bid and ask data for a
+  specific 'PredictIt' market.
 }
 \description{
 Wrapper function to get data for a specific market.

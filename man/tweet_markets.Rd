@@ -6,8 +6,13 @@
 \usage{
 tweet_markets()
 }
+\value{
+A \code{\link[=tibble]{tibble}} containing bid and ask data for all
+  "Tweet count" markets.
+}
 \description{
-Wrapper function to get all available 'PredictIt' "Tweet count" markets and contract prices.
+Wrapper function to get all available 'PredictIt' "Tweet count"
+  markets and contract prices.
 }
 \examples{
 tweet_markets()

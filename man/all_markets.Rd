@@ -6,8 +6,13 @@
 \usage{
 all_markets()
 }
+\value{
+A \code{\link[=tibble]{tibble}} containing bid and ask data for all
+  'PredictIt' markets.
+}
 \description{
-Wrapper function to get all available 'PredictIt' markets and contract prices.
+Wrapper function to get all available 'PredictIt' markets and
+  contract prices.
 }
 \examples{
 markets <- all_markets()

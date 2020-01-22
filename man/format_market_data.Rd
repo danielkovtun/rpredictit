@@ -7,10 +7,19 @@
 format_market_data(data)
 }
 \arguments{
-\item{data}{'PredictIt' market data, of class 'data.frame' or 'tibble', as returned by 'rpredictit::all_markets()' or 'rpredictit::tweet_markets()'}
+\item{data}{'PredictIt' market data, of class \code{data.frame} or
+\code{tibble}, as returned by
+\code{\link[rpredictit:all_markets]{all_markets()}} or
+\code{\link[rpredictit:tweet_markets]{tweet_markets()}}.}
+}
+\value{
+A \code{\link[=tibble]{tibble}} containing bid and ask data formatted
+  with HTML tags and user-friendly column names.
 }
 \description{
-Wrapper function to apply HTML formatting to 'PredictIt' market data. Can be displayed in a 'shiny' app, or standalone in an 'htmlwidget' (e.g. 'DT::datatable').
+Wrapper function to apply HTML formatting to 'PredictIt' market
+  data. Can be displayed in a 'shiny' app, or standalone in an 'htmlwidget'
+  (e.g. \code{\link[DT:datatable]{datatable}}).
 }
 \examples{
 data <- all_markets()

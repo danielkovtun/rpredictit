@@ -2,17 +2,30 @@
 % Please edit documentation in R/market_data.R
 \name{parse_historical_csv}
 \alias{parse_historical_csv}
-\title{Parse 'csv' file containing historical OHLCV data}
+\title{Parse 'csv' file containing historical 'OHLCV' data}
 \usage{
 parse_historical_csv(csv_path, filename = NA)
 }
 \arguments{
-\item{csv_path}{Path to a 'csv' file containing historical OHLCV data for a specific contract (Open, High, Low, Close, Volume)}
+\item{csv_path}{Path to a 'csv' file containing historical 'OHLCV' data for a
+specific contract. Expected format is the same schema as the 'csv' file
+downloaded from the 'PredictIt' website.}
 
-\item{filename}{Optional name to give the 'csv' file when the filepath is derived from a temporary directory}
+\item{filename}{Optional name to give the 'csv' file when the filepath is
+derived from a temporary directory.}
+}
+\value{
+A named list containing the following elements: \describe{
+  \item{data}{An S3 object of class \code{\link[=xts]{xts}}. Time series
+  containing the 'close' price data for the contract provided.}
+  \item{contract}{A \code{\link[=base]{character}} representing the contract
+  name, derived from the input file name. If a \code{filename} argument is
+  provided, the contract name will be assigned to that value.} }
 }
 \description{
-Helper function to parse a 'csv' file obtained from the 'PredictIt' website, containing historical OHLCV data, into an object of class 'xts'.
+Helper function to parse a 'csv' file obtained from the
+  'PredictIt' website, containing historical 'OHLCV' (Open, High, Low, Close,
+  Volume) data, into an object of class \code{\link[=xts]{xts}}.
 }
 \examples{
 filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"

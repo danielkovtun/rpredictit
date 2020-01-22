@@ -7,10 +7,18 @@
 historical_plot(contract_data)
 }
 \arguments{
-\item{contract_data}{Named list containing contract name and data of class 'xts', as returned by 'rpredictit::parse_historical_csv()'}
+\item{contract_data}{Named list containing contract name and data of class
+\code{\link[=xts]{xts}}, as returned by
+\code{\link[rpredictit:parse_historical_csv]{parse_historical_csv()}}.}
+}
+\value{
+Interactive \code{\link[dygraphs:dygraph]{dygraphs::dygraph}} plot
+  containing time series data for contract 'close' prices.
 }
 \description{
-Function to make an interactive 'dygraph' plot of historical contract data.
+Function to make an interactive
+  \code{\link[dygraphs:dygraph]{dygraphs::dygraph}} plot of historical
+  contract data.
 }
 \examples{
 filename <- "What_will_be_the_balance_of_power_in_Congress_after_the_2020_election.csv"
