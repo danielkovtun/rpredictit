@@ -3,7 +3,7 @@ This is a resubmission. In this version I have:
 
 * Changed warning and informational messages to use `warning()` and `message()` instead of `print()` and `cat()`
 * Removed redundant 'R' from the package title
-* Modified the package description to not start with a repition of the title. 
+* Modified the package description to not start with a repetition of the title. 
 * Modified title and description to use proper quoting for API names. ('PredictIt API' --> 'PredictIt' API)
 * Changed all occurences of `T` and `F` to `TRUE` and `FALSE`, respectively.
 * Added `\value` to all `.Rd` files to explain function results in the documentation.
