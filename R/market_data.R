@@ -55,11 +55,11 @@ all_markets <- function(){
 }
 
 
-#' @title Get bids and asks for all 'PredictIt' "Tweet" markets
-#' @description Wrapper function to get all available 'PredictIt' "Tweet count"
+#' @title Get bids and asks for all 'PredictIt' tweet markets
+#' @description Wrapper function to get all available 'PredictIt' tweet count
 #'   markets and contract prices.
 #' @return A \code{\link[=tibble]{tibble}} containing bid and ask data for all
-#'   "Tweet count" markets.
+#'   tweet count markets.
 #' @examples
 #' tweet_markets()
 #'
@@ -133,8 +133,8 @@ create_hyperlinked_df <- function(links, titles) {
 
 #' @title Format bid and ask market data with HTML
 #' @description Wrapper function to apply HTML formatting to 'PredictIt' market
-#'   data. Can be displayed in a 'shiny' app, or standalone in an 'htmlwidget'
-#'   (e.g. \code{\link[DT:datatable]{datatable}}).
+#'   data. Can be displayed in a \code{shiny} app, or standalone in an
+#'   \code{htmlwidget} (e.g. \code{\link[DT:datatable]{datatable}}).
 #'
 #' @param data 'PredictIt' market data, of class \code{data.frame} or
 #'   \code{tibble}, as returned by
@@ -202,7 +202,7 @@ format_market_data <- function(data){
 }
 
 
-#' @title Get JavaScript 'datatable' containing bids and asks for all
+#' @title Get JavaScript datatable containing bids and asks for all
 #'   'PredictIt' markets
 #' @description Wrapper function to return a
 #'   \code{\link[DT:datatable]{datatable}} containing 'PredictIt' market data.
@@ -240,7 +240,7 @@ markets_table <- function(data){
                 ))
 }
 
-#' @title Parse 'csv' file containing historical 'OHLCV' data
+#' @title Parse csv file containing historical OHLCV data
 #' @description Helper function to parse a 'csv' file obtained from the
 #'   'PredictIt' website, containing historical 'OHLCV' (Open, High, Low, Close,
 #'   Volume) data, into an object of class \code{\link[=xts]{xts}}.
@@ -250,6 +250,7 @@ markets_table <- function(data){
 #'   downloaded from the 'PredictIt' website.
 #' @param filename Optional name to give the 'csv' file when the filepath is
 #'   derived from a temporary directory.
+#'
 #' @return A named list containing the following elements: \describe{
 #'   \item{data}{An S3 object of class \code{\link[=xts]{xts}}. Time series
 #'   containing the 'close' price data for the contract provided.}

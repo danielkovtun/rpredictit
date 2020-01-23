@@ -2,7 +2,7 @@
 % Please edit documentation in R/market_data.R
 \name{parse_historical_csv}
 \alias{parse_historical_csv}
-\title{Parse 'csv' file containing historical 'OHLCV' data}
+\title{Parse csv file containing historical OHLCV data}
 \usage{
 parse_historical_csv(csv_path, filename = NA)
 }

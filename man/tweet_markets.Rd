@@ -2,16 +2,16 @@
 % Please edit documentation in R/market_data.R
 \name{tweet_markets}
 \alias{tweet_markets}
-\title{Get bids and asks for all 'PredictIt' "Tweet" markets}
+\title{Get bids and asks for all 'PredictIt' tweet markets}
 \usage{
 tweet_markets()
 }
 \value{
 A \code{\link[=tibble]{tibble}} containing bid and ask data for all
-  "Tweet count" markets.
+  tweet count markets.
 }
 \description{
-Wrapper function to get all available 'PredictIt' "Tweet count"
+Wrapper function to get all available 'PredictIt' tweet count
   markets and contract prices.
 }
 \examples{

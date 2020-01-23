@@ -2,7 +2,7 @@
 % Please edit documentation in R/market_data.R
 \name{markets_table}
 \alias{markets_table}
-\title{Get JavaScript 'datatable' containing bids and asks for all
+\title{Get JavaScript datatable containing bids and asks for all
   'PredictIt' markets}
 \usage{
 markets_table(data)

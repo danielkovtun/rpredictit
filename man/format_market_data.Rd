@@ -18,8 +18,8 @@ A \code{\link[=tibble]{tibble}} containing bid and ask data formatted
 }
 \description{
 Wrapper function to apply HTML formatting to 'PredictIt' market
-  data. Can be displayed in a 'shiny' app, or standalone in an 'htmlwidget'
-  (e.g. \code{\link[DT:datatable]{datatable}}).
+  data. Can be displayed in a \code{shiny} app, or standalone in an
+  \code{htmlwidget} (e.g. \code{\link[DT:datatable]{datatable}}).
 }
 \examples{
 data <- all_markets()
