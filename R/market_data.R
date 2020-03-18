@@ -61,8 +61,10 @@ all_markets <- function(){
 #' @return A \code{\link[=tibble]{tibble}} containing bid and ask data for all
 #'   tweet count markets.
 #' @examples
-#' tweet_markets()
-#'
+#' ## Only run this example in interactive R sessions
+#' if (interactive()) {
+#'     tweet_markets()
+#' }
 #' @importFrom magrittr "%>%"
 #' @export
 tweet_markets <- function(){
@@ -83,10 +85,12 @@ tweet_markets <- function(){
 #' @return A \code{\link[=tibble]{tibble}} containing bid and ask data for a
 #'   specific 'PredictIt' market.
 #' @examples
-#' markets <- all_markets()
-#' id <- markets$id[1]
-#' single_market(id)
-#'
+#' ## Only run this example in interactive R sessions
+#' if (interactive()) {
+#'    markets <- all_markets()
+#'    id <- markets$id[1]
+#'    single_market(id)
+#' }
 #' @importFrom magrittr "%>%"
 #' @export
 single_market <- function(id){
@@ -143,61 +147,63 @@ create_hyperlinked_df <- function(links, titles) {
 #' @return A \code{\link[=tibble]{tibble}} containing bid and ask data formatted
 #'   with HTML tags and user-friendly column names.
 #' @examples
-#' data <- all_markets()
-#' format_market_data(data)
-#'
+#' ## Only run this example in interactive R sessions
+#' if (interactive()) {
+#'     data <- all_markets()
+#'     format_market_data(data)
+#' }
 #' @importFrom magrittr "%>%"
 #' @export
 format_market_data <- function(data){
+  if("data.frame" %in% class(data)){
+    df <- create_hyperlinked_df(data$url, data$shortName)
 
-  df <- create_hyperlinked_df(data$url, data$shortName)
+    market_html <- lapply(1:length(data$image), function(i){
+      shiny::HTML(paste0("<img src='", data$image[i], "' width='50' height='50' />", '<br>', df$hyperlink[i]))
+    }) %>% unlist()
 
-  market_html <- lapply(1:length(data$image), function(i){
-    shiny::HTML(paste0("<img src='", data$image[i], "' width='50' height='50' />", '<br>', df$hyperlink[i]))
-  }) %>% unlist()
+    contract_html <- lapply(1:length(data$contract_image), function(x){
+      cname <- data$contract_shortName[x]
+      img <- data$contract_image[x]
+      shiny::HTML(paste0("<img src='", img, "' width='50' height='50' />", '<br>', cname))
+    }) %>% unlist()
 
-  contract_html <- lapply(1:length(data$contract_image), function(x){
-    cname <- data$contract_shortName[x]
-    img <- data$contract_image[x]
-    shiny::HTML(paste0("<img src='", img, "' width='50' height='50' />", '<br>', cname))
-  }) %>% unlist()
+    data <- data %>%
+      dplyr::select(-c("name", "shortName", "image", "url", "contract_image", "contract_name", "contract_shortName", "contract_status", "displayOrder"))
 
-  data <- data %>%
-    dplyr::select(-c("name", "shortName", "image", "url", "contract_image", "contract_name", "contract_shortName", "contract_status", "displayOrder"))
+    data <- dplyr::bind_cols('contract' = contract_html, data)
+    data <- dplyr::bind_cols('market' = market_html, data)
 
-  data <- dplyr::bind_cols('contract' = contract_html, data)
-  data <- dplyr::bind_cols('market' = market_html, data)
-
-  data <- data %>%
-    dplyr::mutate(Yes = paste0(data$bestBuyYesCost, " / ",  data$bestSellYesCost)) %>%
-    dplyr::mutate(No = paste0(data$bestBuyNoCost, " / ",  data$bestSellNoCost)) %>%
-    dplyr::select(
-      c("market",
-        "contract",
-        "Yes",
-        "No",
-        "lastTradePrice",
-        "lastClosePrice",
-        "dateEnd",
-        "timeStamp",
-        "id",
-        "contract_id",
-        "status"
+    data <- data %>%
+      dplyr::mutate(Yes = paste0(data$bestBuyYesCost, " / ",  data$bestSellYesCost)) %>%
+      dplyr::mutate(No = paste0(data$bestBuyNoCost, " / ",  data$bestSellNoCost)) %>%
+      dplyr::select(
+        c("market",
+          "contract",
+          "Yes",
+          "No",
+          "lastTradePrice",
+          "lastClosePrice",
+          "dateEnd",
+          "timeStamp",
+          "id",
+          "contract_id",
+          "status"
+        )
       )
+
+    colnames(data) <- c(
+      'Market', 'Contract',
+      'Yes (Bid/Ask)',
+      'No (Bid/Ask)',
+      'Last Trade Price',
+      'Last Close Price',
+      'Expiry',
+      'Timestamp',
+      'Market id', 'Contract id',
+      'Status'
     )
-
-  colnames(data) <- c(
-    'Market', 'Contract',
-    'Yes (Bid/Ask)',
-    'No (Bid/Ask)',
-    'Last Trade Price',
-    'Last Close Price',
-    'Expiry',
-    'Timestamp',
-    'Market id', 'Contract id',
-    'Status'
-  )
-
+  }
   return(data)
 }
 
@@ -223,21 +229,23 @@ format_market_data <- function(data){
 #' @export
 markets_table <- function(data){
   data <- format_market_data(data)
-  DT::datatable(data,
-                class ='cell-border stripe',
-                escape = FALSE,
-                rownames = FALSE,
-                extensions = 'Scroller',
-                options = list(
-                  autoWidth = TRUE,
-                  deferRender = TRUE,
-                  scrollY = 400,
-                  scrollX = TRUE,
-                  scroller = TRUE,
-                  columnDefs = list(
-                    list(width = '10%', targets = list(2, 3, 4, 5))
-                  )
-                ))
+  if("data.frame" %in% class(data)){
+    DT::datatable(data,
+                  class ='cell-border stripe',
+                  escape = FALSE,
+                  rownames = FALSE,
+                  extensions = 'Scroller',
+                  options = list(
+                    autoWidth = TRUE,
+                    deferRender = TRUE,
+                    scrollY = 400,
+                    scrollX = TRUE,
+                    scroller = TRUE,
+                    columnDefs = list(
+                      list(width = '10%', targets = list(2, 3, 4, 5))
+                    )
+                  ))
+  }
 }
 
 #' @title Parse csv file containing historical OHLCV data
