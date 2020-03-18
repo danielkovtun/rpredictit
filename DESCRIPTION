@@ -1,6 +1,6 @@
 Package: rpredictit
 Title: Interface to the 'PredictIt' API
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person('Daniel', 'Kovtun', email = 'quantumfusetrader@gmail.com', role = c('cre', 'aut'))
 Description: Wrapper to retrieve market data, explore available markets, and plot historical price data from the 'PredictIt' public API (<https://www.predictit.org/api/marketdata/all/>).
     The package comes with a demo 'shiny' application for illustrating example use cases.
