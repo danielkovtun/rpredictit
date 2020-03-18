@@ -15,6 +15,8 @@ Wrapper function to get all available 'PredictIt' tweet count
   markets and contract prices.
 }
 \examples{
-tweet_markets()
-
+## Only run this example in interactive R sessions
+if (interactive()) {
+    tweet_markets()
+}
 }

@@ -22,7 +22,9 @@ Wrapper function to apply HTML formatting to 'PredictIt' market
   \code{htmlwidget} (e.g. \code{\link[DT:datatable]{datatable}}).
 }
 \examples{
-data <- all_markets()
-format_market_data(data)
-
+## Only run this example in interactive R sessions
+if (interactive()) {
+    data <- all_markets()
+    format_market_data(data)
+}
 }

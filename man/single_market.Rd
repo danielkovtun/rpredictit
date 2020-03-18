@@ -19,8 +19,10 @@ A \code{\link[=tibble]{tibble}} containing bid and ask data for a
 Wrapper function to get data for a specific market.
 }
 \examples{
-markets <- all_markets()
-id <- markets$id[1]
-single_market(id)
-
+## Only run this example in interactive R sessions
+if (interactive()) {
+   markets <- all_markets()
+   id <- markets$id[1]
+   single_market(id)
+}
 }
