@@ -66,13 +66,6 @@ contract_data <- rpredictit::parse_historical_csv(csv_path)
 rpredictit::historical_plot(contract_data)
 ```
 
-#### Twitter Markets
-If you are only interested in "Tweet count" markets, use `rpredictit::tweet_markets()` to return all available "Tweet" markets:
-```{r}
-data <- rpredictit::tweet_markets()
-rpredictit::markets_table(data)
-```
-
 #### Individual Market
 To return data for a specific market, use `rpredictit::single_market(id)`, where `id` refers to the numerical code pertaining to the market of interest. 
 You can find a market's numerical code by consulting its URL or by first calling the all markets API (`all_markets()`)
