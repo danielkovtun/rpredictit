@@ -84,4 +84,4 @@ rpredictit::single_market(id)
 # … with 5 more variables: bestBuyNoCost <dbl>, bestSellYesCost <dbl>, bestSellNoCost <dbl>, lastClosePrice <dbl>, displayOrder <int>
 ```
 
-See the full documentation at https://danielkovtun.github.io/rpredictit. 
+See the full documentation at https://danielkovtun.github.io/rpredictit/. 
