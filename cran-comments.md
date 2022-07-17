@@ -1,18 +1,18 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Added error handling to data structure-dependent functions that require valid HTTP responses.
-* Modified vignette to prevent evaluating all of the examples, as the 'PredictIt' API rate limits requests. 
+* Changed the format string used to parse character datetimes to account for AM and PM timestamps coming from PredictIt.
+* Deprecated functions related to now defunct tweet markets.
 
-### Test environments
-* local Windows 10 install x86_64-w64-mingw32 (64-bit), R 3.6.2 and R-devel
-* Windows Server 2008 R2 SP1 (on rhub), R-devel, 32/64 bit
-* Ubuntu 18.04, R 3.6.1
-* Ubuntu 16.04.6 LTS (on travis-ci), R 3.6.2
-* Fedora Linux (on rhub), R-devel, clang, gfortran
- 
-### R CMD check results
-There were no ERRORs, WARNINGs, or NOTEs.
+## Test environments
+* local aarch64-apple-darwin20 (64-bit), R version 4.2.1 and R-devel
+* local x86_64-apple-darwin15.6.0 (64-bit), R version 3.6.2 and R-devel
+* R-hub macos-highsierra-release (r-release)
+* R-hub macos-highsierra-release-cran (r-release)
+* R-hub macos-m1-bigsur-release (r-release)
+
+## R CMD check results
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Previous cran-comments
 ### Resubmission
