@@ -19,7 +19,7 @@ all_markets <- function(){
       return(NA)
     }
   )
-  if(class(response) == "list"){
+  if(inherits(response, "list")){
     markets <- r$markets %>% dplyr::as.tbl()
     markets <- markets %>%
       dplyr::mutate_if(is.character, trimws) %>%
@@ -68,11 +68,9 @@ all_markets <- function(){
 #' @importFrom magrittr "%>%"
 #' @export
 tweet_markets <- function(){
+  .Deprecated("all_markets", msg="Will be removed in the next version. PredictIt has removed all tweet market offerings.")
   markets <- all_markets()
-  tweet <- markets %>%
-    dplyr::filter_at(dplyr::vars("name"), ~stringr::str_detect(., 'tweet'))
-
-  return(tweet)
+  return (markets)
 }
 
 
@@ -143,7 +141,7 @@ create_hyperlinked_df <- function(links, titles) {
 #' @param data 'PredictIt' market data, of class \code{data.frame} or
 #'   \code{tibble}, as returned by
 #'   \code{\link[rpredictit:all_markets]{all_markets()}} or
-#'   \code{\link[rpredictit:tweet_markets]{tweet_markets()}}.
+#'   \code{\link[rpredictit:single_market]{single_market}}.
 #' @return A \code{\link[=tibble]{tibble}} containing bid and ask data formatted
 #'   with HTML tags and user-friendly column names.
 #' @examples
@@ -218,7 +216,7 @@ format_market_data <- function(data){
 #' @param data 'PredictIt' market data, of class \code{\link[=base]{data.frame}}
 #'   or \code{\link[=tibble]{tibble}}, as returned by
 #'   \code{\link[rpredictit:all_markets]{all_markets()}} or
-#'   \code{\link[rpredictit:tweet_markets]{tweet_markets()}}.
+#'   \code{\link[rpredictit:single_market]{single_market}}.
 #' @return An interactive \code{\link[DT:datatable]{datatable}} object
 #'   containing formatted bid and ask data for the provided market data.
 #' @examples
@@ -292,14 +290,14 @@ parse_historical_csv <- function(csv_path, filename = NA){
   filename <- gsub("\\.csv", "", basename(filename))
   filename <- gsub("_", " ", filename)
 
-  if(class(ohlcv) == "data.frame"){
+  if(inherits(ohlcv, "data.frame")){
     colnames(ohlcv) <- c("contract", "date", "open", "high", "low", "close", "volume")
 
     ohlcv <- ohlcv %>%
       dplyr::as.tbl() %>%
       dplyr::mutate_if(is.character, trimws) %>%
       dplyr::mutate_at(dplyr::vars("open", "high", "low", "close"), ~as.numeric(gsub("\\$", "", .))) %>%
-      dplyr::mutate_at(dplyr::vars("date"), ~as.POSIXct(strptime(., tz = "EST", format = "%m/%d/%Y %H:%M"))) %>%
+      dplyr::mutate_at(dplyr::vars("date"), ~as.POSIXct(strptime(., tz = "EST", format = "%m/%d/%Y %I:%M:%S %p"))) %>%
       as.data.frame() %>%
       dplyr::group_by(ohlcv$contract)
 
