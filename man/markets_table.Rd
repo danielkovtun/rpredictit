@@ -11,7 +11,7 @@ markets_table(data)
 \item{data}{'PredictIt' market data, of class \code{\link[=base]{data.frame}}
 or \code{\link[=tibble]{tibble}}, as returned by
 \code{\link[rpredictit:all_markets]{all_markets()}} or
-\code{\link[rpredictit:tweet_markets]{tweet_markets()}}.}
+\code{\link[rpredictit:single_market]{single_market}}.}
 }
 \value{
 An interactive \code{\link[DT:datatable]{datatable}} object

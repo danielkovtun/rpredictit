@@ -10,7 +10,7 @@ format_market_data(data)
 \item{data}{'PredictIt' market data, of class \code{data.frame} or
 \code{tibble}, as returned by
 \code{\link[rpredictit:all_markets]{all_markets()}} or
-\code{\link[rpredictit:tweet_markets]{tweet_markets()}}.}
+\code{\link[rpredictit:single_market]{single_market}}.}
 }
 \value{
 A \code{\link[=tibble]{tibble}} containing bid and ask data formatted
