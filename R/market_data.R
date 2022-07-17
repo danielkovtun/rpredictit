@@ -19,7 +19,7 @@ all_markets <- function(){
       return(NA)
     }
   )
-  if(class(response) == "list"){
+  if(inherits(response, "list")){
     markets <- r$markets %>% dplyr::as.tbl()
     markets <- markets %>%
       dplyr::mutate_if(is.character, trimws) %>%
@@ -290,7 +290,7 @@ parse_historical_csv <- function(csv_path, filename = NA){
   filename <- gsub("\\.csv", "", basename(filename))
   filename <- gsub("_", " ", filename)
 
-  if(class(ohlcv) == "data.frame"){
+  if(inherits(ohlcv, "data.frame")){
     colnames(ohlcv) <- c("contract", "date", "open", "high", "low", "close", "volume")
 
     ohlcv <- ohlcv %>%
