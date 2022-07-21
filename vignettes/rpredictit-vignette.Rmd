@@ -75,4 +75,4 @@ id <- markets$id[1]
 rpredictit::single_market(id)
 ```
 
-See the full documentation at https://danielkovtun.github.io/rpredictit. 
+See the full documentation at https://danielkovtun.github.io/rpredictit/. 

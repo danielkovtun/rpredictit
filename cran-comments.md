@@ -1,8 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Changed the format string used to parse character datetimes to account for AM and PM timestamps coming from PredictIt.
-* Deprecated functions related to now defunct tweet markets.
+* Added a trailing slash to the pockage site to prevent 301 redirects in CRAN checks
 
 ## Test environments
 * local aarch64-apple-darwin20 (64-bit), R version 4.2.1 and R-devel
@@ -15,6 +14,22 @@ This is a resubmission. In this version I have:
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Previous cran-comments
+### Resubmission
+This is a resubmission. In this version I have:
+
+* Changed the format string used to parse character datetimes to account for AM and PM timestamps coming from PredictIt.
+* Deprecated functions related to now defunct tweet markets.
+
+#### Test environments
+* local aarch64-apple-darwin20 (64-bit), R version 4.2.1 and R-devel
+* local x86_64-apple-darwin15.6.0 (64-bit), R version 3.6.2 and R-devel
+* R-hub macos-highsierra-release (r-release)
+* R-hub macos-highsierra-release-cran (r-release)
+* R-hub macos-m1-bigsur-release (r-release)
+
+#### R CMD check results
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
 ### Resubmission
 This is a resubmission. In this version I have:
 
